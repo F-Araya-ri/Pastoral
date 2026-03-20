@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://bpzygjtk7ngisj7klv2a-mysql.services.clever-cloud.com:3306/bpzygjtk7ngisj7klv2a</property>
+        <property name="hibernate.connection.username">u9wekbpkky4e4sde</property>
+        <property name="hibernate.connection.password">Ns94oYz6cSSPEb77kMqM</property>
+
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.generate_statistics">false</property>
+
+        <mapping class="main.proyecto_pastoral.Model.Parroquia"/>
+        <mapping class="main.proyecto_pastoral.Model.Sector"/>
+        <mapping class="main.proyecto_pastoral.Model.Registro"/>
+        <mapping class="main.proyecto_pastoral.Model.Persona"/>
+        <mapping class="main.proyecto_pastoral.Model.Entrevistador"/>
+        <mapping class="main.proyecto_pastoral.Model.Vivienda"/>
+        <mapping class="main.proyecto_pastoral.Model.Asistencia"/>
+        <mapping class="main.proyecto_pastoral.Model.IngresoFamiliar"/>
+    </session-factory>
+</hibernate-configuration>
