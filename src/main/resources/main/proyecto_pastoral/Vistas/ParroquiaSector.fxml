@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ParroquiaSectorController">
+   <content>
+      <VBox spacing="20" style="-fx-padding: 24;" stylesheets="@../../../parroquiaSector.css">
+
+          <!-- Título -->
+          <Label styleClass="titulo-principal" text="Gestión de Parroquias y Sectores" />
+
+          <!-- Mensaje éxito / error -->
+          <Label fx:id="lblMensaje" text="" wrapText="true" />
+
+          <!-- ═══════════════════════════════════════════ -->
+          <!--              SECCIÓN PARROQUIA              -->
+          <!-- ═══════════════════════════════════════════ -->
+          <TitledPane collapsible="false" text="Parroquia">
+              <VBox spacing="14">
+
+                  <HBox alignment="CENTER_LEFT" spacing="12">
+                      <Label styleClass="label-campo" text="Nombre de la parroquia:" />
+                      <TextField fx:id="txtNombreParroquia" promptText="Ingrese el nombre" />
+                  </HBox>
+
+                  <HBox spacing="10">
+                      <Button onAction="#guardarParroquia" styleClass="btn-guardar" text="Guardar parroquia" />
+                      <Button onAction="#limpiarParroquia" styleClass="btn-limpiar" text="Limpiar" />
+                  </HBox>
+
+                  <TableView fx:id="tablaParroquias" prefHeight="180">
+                      <columns>
+                          <TableColumn fx:id="colIdParroquia" prefWidth="70" text="ID" />
+                          <TableColumn fx:id="colNombreParroquia" minWidth="0.0" prefWidth="419.99999237060547" text="Nombre" />
+                      </columns>
+                      <placeholder>
+                     <Label text="No hay parroquias registradas" />
+                  </placeholder>
+                  </TableView>
+
+              </VBox>
+          </TitledPane>
+
+          <!-- ═══════════════════════════════════════════ -->
+          <!--               SECCIÓN SECTOR               -->
+          <!-- ═══════════════════════════════════════════ -->
+          <TitledPane collapsible="false" text="Sector">
+              <VBox spacing="14">
+
+                  <HBox alignment="CENTER_LEFT" spacing="12">
+                      <Label styleClass="label-campo" text="Parroquia:" />
+                      <ComboBox fx:id="cmbParroquia" promptText="Seleccione una parroquia" />
+                  </HBox>
+
+                  <HBox alignment="CENTER_LEFT" spacing="12">
+                      <Label styleClass="label-campo" text="Nombre del sector:" />
+                      <TextField fx:id="txtNombreSector" promptText="Ingrese el nombre" />
+                  </HBox>
+
+                  <HBox spacing="10">
+                      <Button onAction="#guardarSector" styleClass="btn-guardar" text="Guardar sector" />
+                      <Button onAction="#limpiarSector" styleClass="btn-limpiar" text="Limpiar" />
+                  </HBox>
+
+                  <TableView fx:id="tablaSectores" prefHeight="180">
+                      <columns>
+                          <TableColumn fx:id="colIdSector" prefWidth="70" text="ID" />
+                          <TableColumn fx:id="colNombreSector" prefWidth="220" text="Nombre del sector" />
+                          <TableColumn fx:id="colParroquiaSector" prefWidth="202.00006103515625" text="Parroquia" />
+                      </columns>
+                      <placeholder>
+                     <Label text="No hay sectores registrados" />
+                  </placeholder>
+                  </TableView>
+
+              </VBox>
+          </TitledPane>
+
+      </VBox>
+   </content>
+</ScrollPane>
