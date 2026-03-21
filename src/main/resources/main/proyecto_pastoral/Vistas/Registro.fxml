@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="main.proyecto_pastoral.Controller.Registrocontroller"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="16" style="-fx-background-color: #f4f6f8; -fx-padding: 30;"
+          AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <Label style="-fx-font-size: 22px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #2c3e50;"
+               text="Nuevo Registro Pastoral" />
+
+        <Separator />
+
+        <VBox spacing="18" style="-fx-background-color: white;
+                                  -fx-background-radius: 10;
+                                  -fx-padding: 24;
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+
+            <Label style="-fx-font-size: 13px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #7f8c8d;
+                          -fx-padding: 0 0 4 0;"
+                   text="Información del Registro" />
+
+            <!-- Fecha de Inicio -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label minWidth="160" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Fecha de Inicio:" />
+                <Label fx:id="lblFechaInicio" style="-fx-font-size: 14px;
+                                                    -fx-text-fill: #2980b9;
+                                                    -fx-background-color: #eaf4fb;
+                                                    -fx-background-radius: 5;
+                                                    -fx-padding: 6 12;"
+                       text="--/--/----" />
+                <Label style="-fx-text-fill: #95a5a6; -fx-font-size: 11px;" text="(automática del sistema)" />
+            </HBox>
+
+            <!-- Parroquia -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label minWidth="160" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Parroquia:" />
+                <ComboBox fx:id="cbParroquia" maxWidth="Infinity" prefWidth="300" style="-fx-background-radius: 6;" />
+            </HBox>
+
+            <!-- Sector -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label minWidth="160" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Sector:" />
+                <ComboBox fx:id="cbSector" disable="true" maxWidth="Infinity" prefWidth="300" style="-fx-background-radius: 6;" />
+            </HBox>
+
+            <!-- Entrevistador -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label minWidth="160" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Entrevistador:" />
+                <ComboBox fx:id="cbEntrevistador" maxWidth="Infinity" prefWidth="300" style="-fx-background-radius: 6;" />
+            </HBox>
+
+            <Separator />
+
+            <Label
+                    text="Observaciones (opcional)"
+                    style="-fx-font-size: 13px;
+                   -fx-font-weight: bold;
+                   -fx-text-fill: #7f8c8d;" />
+
+            <TextArea
+                    fx:id="txtObservaciones"
+                    promptText="Escriba aquí cualquier observación relevante sobre el registro..."
+                    prefRowCount="4"
+                    wrapText="true"
+                    style="-fx-background-radius: 6;
+                   -fx-border-radius: 6;
+                   -fx-border-color: #dde3ea;
+                   -fx-font-size: 13px;" />
+
+            <!-- Botones -->
+            <HBox alignment="CENTER_RIGHT" spacing="12">
+                <Button fx:id="btnLimpiar" onAction="#limpiarFormulario"
+                        prefHeight="38" prefWidth="120"
+                        style="-fx-background-color: #ecf0f1;
+                               -fx-text-fill: #7f8c8d;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 7;
+                               -fx-border-radius: 7;
+                               -fx-cursor: hand;
+                               -fx-font-size: 13px;"
+                        text="Limpiar" />
+
+                <Button fx:id="btnGuardar" defaultButton="true" onAction="#guardarRegistro"
+                        prefHeight="38" prefWidth="160"
+                        style="-fx-background-color: #2980b9;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 7;
+                               -fx-border-radius: 7;
+                               -fx-cursor: hand;
+                               -fx-font-size: 13px;"
+                        text="Guardar Registro" />
+            </HBox>
+
+            <!-- Mensaje de estado -->
+            <Label fx:id="lblMensaje"
+                   style="-fx-font-size: 13px; -fx-padding: 8 0 0 0;"
+                   text="" />
+
+        </VBox>
+    </VBox>
+</AnchorPane>

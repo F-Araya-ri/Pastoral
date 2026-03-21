@@ -23,11 +23,11 @@ public class Registro {
     @Column(name = "Observaciones", columnDefinition = "TEXT")
     private String observaciones;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdSector", nullable = false)
     private Sector sector;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdEntrevistador", nullable = false)
     private Entrevistador entrevistador;
 

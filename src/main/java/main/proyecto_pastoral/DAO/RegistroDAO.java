@@ -29,6 +29,21 @@ public class RegistroDAO implements InterfaceDAO<Registro> {
         }
     }
 
+    public int guardarYRetornarId(Registro registro) {
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+            session.persist(registro);
+            session.flush();
+            int numeroRegistro = registro.getNumeroRegistro();
+            transaction.commit();
+            return numeroRegistro;
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            throw new RuntimeException("Error al guardar registro", e);
+        }
+    }
+
     @Override
     public void actualizar(Registro registro) {
         Transaction transaction = null;

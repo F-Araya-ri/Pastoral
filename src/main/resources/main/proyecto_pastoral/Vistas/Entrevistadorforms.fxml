@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="480" prefWidth="500" style="-fx-background-color: #f4f6f8; -fx-padding: 30;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.EntrevistadorController">
+
+    <VBox prefHeight="498.0" prefWidth="479.0" spacing="20">
+
+        <!-- TÍTULO -->
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Gestión de Entrevistadores" />
+
+        <Separator />
+
+        <!-- TARJETA: FORMULARIO NUEVO ENTREVISTADOR -->
+        <VBox spacing="14" style="-fx-background-color: white;                      -fx-background-radius: 10;                      -fx-padding: 20;                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+
+            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #7f8c8d;" text="Nuevo Entrevistador" />
+
+            <!-- CAMPO NOMBRE -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label minWidth="100" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="Nombre:" />
+
+                <TextField fx:id="txtNombre" prefWidth="280" promptText="Ingrese el nombre completo..." style="-fx-background-radius: 6; -fx-border-color: #dde3ea;                                   -fx-border-radius: 6; -fx-font-size: 13px; -fx-padding: 6 10;" />
+            </HBox>
+
+            <!-- BOTONES -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button fx:id="btnLimpiar" onAction="#limpiarFormulario" prefHeight="34" prefWidth="100" style="-fx-background-color: #ecf0f1; -fx-text-fill: #7f8c8d;                                -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Limpiar" />
+
+                <Button fx:id="btnGuardar" defaultButton="true" onAction="#guardarEntrevistador" prefHeight="34" prefWidth="120" style="-fx-background-color: #2980b9; -fx-text-fill: white;                                -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" text="Guardar" />
+            </HBox>
+
+            <!-- MENSAJE DE RESULTADO -->
+            <Label fx:id="lblMensaje" maxWidth="Infinity" style="-fx-font-size: 12px;" text="" wrapText="true" />
+
+        </VBox>
+
+        <!-- TARJETA: LISTA DE ENTREVISTADORES EXISTENTES -->
+        <VBox alignment="CENTER" prefHeight="15.0" prefWidth="164.0" spacing="10" style="-fx-background-color: white;                      -fx-background-radius: 10;                      -fx-padding: 20;                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);" VBox.vgrow="ALWAYS">
+
+            <Label style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #7f8c8d;" text="Entrevistadores registrados" />
+
+            <ListView fx:id="listaEntrevistadores" prefHeight="160" style="-fx-background-radius: 6; -fx-border-color: #dde3ea; -fx-border-radius: 6;" VBox.vgrow="ALWAYS" />
+
+        </VBox>
+
+    </VBox>
+</AnchorPane>

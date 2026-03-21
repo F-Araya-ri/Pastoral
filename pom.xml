@@ -87,7 +87,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>main/main.App</mainClass>
+                            <mainClass>main.proyecto_pastoral.Launcher</mainClass>
                             <launcher>app</launcher>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
@@ -97,6 +97,26 @@
                                 <option>--add-exports=java.naming/javax.naming.spi=ALL-UNNAMED</option>
                                 <option>--add-opens=java.naming/javax.naming=ALL-UNNAMED</option>
                             </options>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>main.proyecto_pastoral.Launcher</mainClass>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
