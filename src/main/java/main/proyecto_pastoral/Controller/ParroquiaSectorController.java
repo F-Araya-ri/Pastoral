@@ -3,9 +3,13 @@ package main.proyecto_pastoral.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import main.proyecto_pastoral.App;
 import main.proyecto_pastoral.DAO.ParroquiaDAO;
 import main.proyecto_pastoral.DAO.SectorDAO;
 import main.proyecto_pastoral.Util.HibernateUtil;
@@ -13,26 +17,38 @@ import main.proyecto_pastoral.Model.Parroquia;
 import main.proyecto_pastoral.Model.Sector;
 import org.hibernate.SessionFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ParroquiaSectorController implements Initializable {
 
 
-    @FXML private Label lblMensaje;
+    @FXML
+    private Label lblMensaje;
 
-    @FXML private TextField txtNombreParroquia;
-    @FXML private TableView<Parroquia> tablaParroquias;
-    @FXML private TableColumn<Parroquia, Integer> colIdParroquia;
-    @FXML private TableColumn<Parroquia, String>  colNombreParroquia;
+    @FXML
+    private TextField txtNombreParroquia;
+    @FXML
+    private TableView<Parroquia> tablaParroquias;
+    @FXML
+    private TableColumn<Parroquia, Integer> colIdParroquia;
+    @FXML
+    private TableColumn<Parroquia, String> colNombreParroquia;
 
 
-    @FXML private ComboBox<Parroquia> cmbParroquia;
-    @FXML private TextField txtNombreSector;
-    @FXML private TableView<Sector> tablaSectores;
-    @FXML private TableColumn<Sector, Integer> colIdSector;
-    @FXML private TableColumn<Sector, String>  colNombreSector;
-    @FXML private TableColumn<Sector, String>  colParroquiaSector;
+    @FXML
+    private ComboBox<Parroquia> cmbParroquia;
+    @FXML
+    private TextField txtNombreSector;
+    @FXML
+    private TableView<Sector> tablaSectores;
+    @FXML
+    private TableColumn<Sector, Integer> colIdSector;
+    @FXML
+    private TableColumn<Sector, String> colNombreSector;
+    @FXML
+    private TableColumn<Sector, String> colParroquiaSector;
 
 
     private ParroquiaDAO parroquiaDAO;
@@ -40,13 +56,13 @@ public class ParroquiaSectorController implements Initializable {
 
 
     private ObservableList<Parroquia> listaParroquias = FXCollections.observableArrayList();
-    private ObservableList<Sector>    listaSectores   = FXCollections.observableArrayList();
+    private ObservableList<Sector> listaSectores = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         SessionFactory sf = HibernateUtil.getSessionFactory();
         parroquiaDAO = new ParroquiaDAO(sf);
-        sectorDAO    = new SectorDAO(sf);
+        sectorDAO = new SectorDAO(sf);
 
         configurarTablaParroquias();
         configurarTablaSectores();
@@ -98,9 +114,9 @@ public class ParroquiaSectorController implements Initializable {
 
 
         colParroquiaSector.setCellValueFactory(data ->
-            new javafx.beans.property.SimpleStringProperty(
-                data.getValue().getParroquia().getNombreParroquia()
-            )
+                new javafx.beans.property.SimpleStringProperty(
+                        data.getValue().getParroquia().getNombreParroquia()
+                )
         );
 
         tablaSectores.setItems(listaSectores);
@@ -167,5 +183,30 @@ public class ParroquiaSectorController implements Initializable {
     private void mostrarError(String mensaje) {
         lblMensaje.setText(mensaje);
         lblMensaje.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px; -fx-font-weight: bold;");
+    }
+    //---------------------------------------------------------------------------
+    // CREANDO BOTON PARA ENTRAR AL REGISTRO y CREAR USUARIO CREADO POR FABIANA
+    //------------------------------------------------------------------------
+    @FXML
+    private void abrirRegistroForms() throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Registro.fxml"));
+        Scene registroScene = new Scene(loader.load(), 640, 500);
+
+        Stage stage = new Stage();
+        stage.setTitle("Registro Pastoral");
+        stage.setScene(registroScene);
+        stage.show();
+
+    }
+    @FXML
+    private void abrirEntrevistadorForms() throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                App.class.getResource("Vistas/EntrevistadorForms.fxml")
+        );
+        Scene scene = new Scene(loader.load(), 500, 480);
+        Stage stage = new Stage();
+        stage.setTitle("Entrevistadores");
+        stage.setScene(scene);
+        stage.show();
     }
 }

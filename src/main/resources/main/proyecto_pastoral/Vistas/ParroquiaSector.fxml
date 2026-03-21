@@ -84,7 +84,17 @@
 
               </VBox>
           </TitledPane>
+ <Button fx:id="btnEntrevistadorForms"
+                  text="Ir a Entrevistadores"
+                  styleClass="btn-ir-entrevistadores"
+                  onAction="#abrirEntrevistadorForms" />
 
-      </VBox>
+<Button fx:id="btnRegistroForms"
+        text="Ir a Registro"
+        styleClass="btn-ir-registro"
+        onAction="#abrirRegistroForms" />
+
+
+        </VBox>
    </content>
 </ScrollPane>
