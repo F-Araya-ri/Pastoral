@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<ScrollPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso3Controller">
+   <content>
+      <VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;                            -fx-border-radius: 8; -fx-background-radius: 8;">
+      
+          <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Personas del hogar" />
+          <Separator />
+      
+          <!-- Formulario agregar persona -->
+          <HBox spacing="12">
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="Nombres y apellidos" />
+                  <TextField fx:id="txtNombre" promptText="Apellidos y nombres" />
+              </VBox>
+              <VBox spacing="4">
+                  <Label style="-fx-font-weight: bold;" text="Tipo doc." />
+                  <ComboBox fx:id="cmbTipoDoc" prefWidth="110" promptText="Tipo" />
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="N° documento" />
+                  <TextField fx:id="txtDocumento" promptText="Número" />
+              </VBox>
+          </HBox>
+      
+          <HBox spacing="12">
+              <VBox spacing="4">
+                  <Label style="-fx-font-weight: bold;" text="Sexo" />
+                  <ComboBox fx:id="cmbSexo" prefWidth="100" />
+              </VBox>
+              <VBox spacing="4">
+                  <Label style="-fx-font-weight: bold;" text="Edad" />
+                  <TextField fx:id="txtEdad" prefWidth="70" promptText="Años" />
+              </VBox>
+              <VBox spacing="4">
+                  <Label style="-fx-font-weight: bold;" text="Jefatura" />
+                  <CheckBox fx:id="chkJefatura" text="Es jefe/a de familia" />
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="Relación" />
+                  <ComboBox fx:id="cmbRelacion" maxWidth="Infinity" promptText="Relación" />
+              </VBox>
+          </HBox>
+      
+          <HBox spacing="12">
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="País" />
+                  <TextField fx:id="txtPais" promptText="País de origen" />
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="Migración" />
+                  <TextField fx:id="txtMigracion" promptText="Estado migratorio" />
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="Educación" />
+                  <TextField fx:id="txtEducacion" promptText="Nivel educativo" />
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="Salud" />
+                  <TextField fx:id="txtSalud" promptText="Condición de salud" />
+              </VBox>
+              <VBox spacing="4" HBox.hgrow="ALWAYS">
+                  <Label style="-fx-font-weight: bold;" text="Seguro" />
+                  <TextField fx:id="txtSeguro" promptText="Tipo de seguro" />
+              </VBox>
+          </HBox>
+      
+          <!-- Ingreso familiar -->
+          <TitledPane collapsible="false" style="-fx-font-weight: bold;" text="Ingreso familiar">
+              <HBox spacing="12" style="-fx-padding: 8;">
+                  <VBox spacing="4" HBox.hgrow="ALWAYS">
+                      <Label style="-fx-font-weight: bold;" text="Ocupación / Pensión" />
+                      <TextField fx:id="txtOcupacion" promptText="Ocupación o pensión" />
+                  </VBox>
+                  <VBox spacing="4">
+                      <Label style="-fx-font-weight: bold;" text="¿Trabaja?" />
+                      <CheckBox fx:id="chkTrabaja" text="Sí trabaja" />
+                  </VBox>
+                  <VBox spacing="4" HBox.hgrow="ALWAYS">
+                      <Label style="-fx-font-weight: bold;" text="Ingreso mensual aproximado" />
+                      <TextField fx:id="txtIngreso" promptText="₡ 0.00" />
+                  </VBox>
+              </HBox>
+          </TitledPane>
+      
+          <Button onAction="#agregarPersona" style="-fx-background-color: #27ae60; -fx-text-fill: white;                    -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 6;                    -fx-cursor: hand;" text="Agregar persona" />
+      
+          <!-- Tabla de personas agregadas -->
+          <TableView fx:id="tablaPersonas" prefHeight="160">
+              <columns>
+                  <TableColumn fx:id="colNombre" prefWidth="200" text="Nombre Completo" />
+                  <TableColumn fx:id="colDocumento" prefWidth="110" text="Cedula" />
+                  <TableColumn fx:id="colSexo" prefWidth="60" text="Sexo" />
+                  <TableColumn fx:id="colEdad" prefWidth="50" text="Edad" />
+                  <TableColumn fx:id="colJefatura" prefWidth="70" text="Jefatura" />
+                  <TableColumn fx:id="colRelacion" prefWidth="100" text="Relación" />
+              </columns>
+              <placeholder>
+               <Label text="No hay personas agregadas" />
+            </placeholder>
+          </TableView>
+      
+      </VBox>
+   </content>
+</ScrollPane>

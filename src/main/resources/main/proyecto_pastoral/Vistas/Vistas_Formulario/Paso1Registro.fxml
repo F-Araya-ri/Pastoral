@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;                            -fx-border-radius: 8; -fx-background-radius: 8;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso1Controller">
+
+    <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Datos del registro" />
+    <Separator />
+
+    <!-- Fila 1: Parroquia + Sector -->
+    <HBox spacing="24">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label style="-fx-font-weight: bold;" text="Parroquia" />
+            <ComboBox fx:id="cbParroquia" maxWidth="Infinity" promptText="-- Seleccione Parroquia --" />
+        </VBox>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label style="-fx-font-weight: bold;" text="Sector o filial" />
+            <ComboBox fx:id="cbSector" maxWidth="Infinity" promptText="-- Seleccione Sector --" />
+        </VBox>
+    </HBox>
+
+    <!-- Fila 2: Entrevistador + Fecha (automática) -->
+    <HBox spacing="24">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label style="-fx-font-weight: bold;" text="Entrevistador" />
+            <ComboBox fx:id="cbEntrevistador" maxWidth="Infinity" promptText="-- Seleccione Entrevistador --" />
+        </VBox>
+        <VBox spacing="8">
+            <Label style="-fx-font-weight: bold;" text="Fecha de inicio" />
+            <Label fx:id="lblFechaInicio" style="-fx-background-color: #f0f2f5; -fx-padding: 8 12;                           -fx-background-radius: 6; -fx-font-size: 13px;                           -fx-border-color: #c8cdd4; -fx-border-radius: 6;                           -fx-min-width: 140px;" />
+        </VBox>
+    </HBox>
+
+    <!-- Fila 3: Teléfonos -->
+    <HBox spacing="24">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label style="-fx-font-weight: bold;" text="Observaciones" />
+            <TextArea fx:id="txtObservaciones" prefHeight="80" promptText="Observaciones del registro" wrapText="true" />
+        </VBox>
+    </HBox>
+
+    <!-- Mensaje -->
+    <Label fx:id="lblMensaje" style="-fx-font-size: 13px; -fx-font-weight: bold;" text="" wrapText="true" />
+
+</VBox>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;
+                           -fx-border-radius: 8; -fx-background-radius: 8;"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso5CierreController">
+
+    <Label text="Cierre del registro" style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <Separator/>
+
+    <!-- Resumen -->
+    <VBox spacing="6" style="-fx-background-color: #f8f9fa; -fx-padding: 16; -fx-background-radius: 6;">
+        <Label text="Resumen de la ficha" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <Label fx:id="lblResumenRegistro"     text="" wrapText="true"/>
+        <Label fx:id="lblResumenVivienda"     text="" wrapText="true"/>
+        <Label fx:id="lblResumenPersonas"     text=""/>
+        <Label fx:id="lblResumenAsistencias"  text=""/>
+    </VBox>
+
+    <HBox spacing="24">
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Fecha prevista de conclusión" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="fechaConclusion" promptText="DD/MM/AAAA" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="8">
+        <Label text="Prolongaciones de la ayuda" style="-fx-font-weight: bold;"/>
+        <HBox spacing="12">
+
+        </HBox>
+    </VBox>
+
+    <Button text="Guardar ficha completa" onAction="#guardarFicha"
+            maxWidth="Infinity"
+            style="-fx-background-color: #27ae60; -fx-text-fill: white;
+                   -fx-font-size: 14px; -fx-font-weight: bold;
+                   -fx-padding: 12 0; -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+</VBox>

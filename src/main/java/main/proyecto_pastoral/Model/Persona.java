@@ -22,12 +22,6 @@ public class Persona {
     @Column(name = "Nombre", nullable = false, length = 150)
     private String nombre;
 
-    @Column(name = "PrimerApellido", nullable = false, length = 100)
-    private String primerApellido;
-
-    @Column(name = "SegundoApellido", length = 100)
-    private String segundoApellido;
-
     @Column(name = "Sexo", length = 20)
     private String sexo;
 
@@ -65,15 +59,12 @@ public class Persona {
     public Persona() {}
 
     public Persona(String tipoDocumento, String numeroIdentificacion,
-                   String nombre, String primerApellido, String segundoApellido,
-                   String sexo, boolean jefatura, String relacion, int edad,
+                   String nombre,String sexo, boolean jefatura, String relacion, int edad,
                    String pais, String migracion, String educacion,
                    String salud, String seguro, Registro registro) {
         this.tipoDocumento = tipoDocumento;
         this.numeroIdentificacion = numeroIdentificacion;
         this.nombre = nombre;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
         this.sexo = sexo;
         this.jefatura = jefatura;
         this.relacion = relacion;
@@ -84,10 +75,6 @@ public class Persona {
         this.salud = salud;
         this.seguro = seguro;
         this.registro = registro;
-    }
-
-    public String getNombreCompleto() {
-        return nombre + " " + primerApellido + " " + (segundoApellido != null ? segundoApellido : "");
     }
 
     public int getIdPersona() { return idPersona; }
@@ -101,12 +88,6 @@ public class Persona {
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
-
-    public String getPrimerApellido() { return primerApellido; }
-    public void setPrimerApellido(String primerApellido) { this.primerApellido = primerApellido; }
-
-    public String getSegundoApellido() { return segundoApellido; }
-    public void setSegundoApellido(String segundoApellido) { this.segundoApellido = segundoApellido; }
 
     public String getSexo() { return sexo; }
     public void setSexo(String sexo) { this.sexo = sexo; }

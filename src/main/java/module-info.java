@@ -12,4 +12,5 @@ module main.proyecto_pastoral {
     opens main.proyecto_pastoral.Controller to javafx.fxml;
     opens main.proyecto_pastoral to javafx.fxml;
     exports main.proyecto_pastoral;
+    opens main.proyecto_pastoral.Controller.ControllersRegistro to javafx.fxml;
 }

@@ -18,13 +18,17 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
     @Override
     public void guardar(Persona persona) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.persist(persona);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             throw new RuntimeException("Error al guardar persona", e);
+        } finally {
+            if (session != null) session.close();
         }
     }
 
@@ -68,7 +72,7 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
     public List<Persona> buscarPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
-                            "FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC, p.primerApellido", Persona.class)
+                            "FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC ", Persona.class)
                     .setParameter("numero", numeroRegistro)
                     .list();
         }
