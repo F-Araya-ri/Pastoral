@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;
+                           -fx-border-radius: 8; -fx-background-radius: 8;"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso2Controller">
+
+    <Label text="Datos de la vivienda"
+           style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <Separator/>
+
+    <!-- ToggleGroups declarados ANTES de los RadioButtons -->
+    <fx:define>
+        <ToggleGroup fx:id="tipoGroup"/>
+        <ToggleGroup fx:id="tenenciaGroup"/>
+        <ToggleGroup fx:id="condicionGroup"/>
+    </fx:define>
+
+    <!-- Tipo de vivienda -->
+    <VBox spacing="8">
+        <Label text="Tipo de vivienda" style="-fx-font-weight: bold;"/>
+        <HBox spacing="12">
+            <RadioButton text="Casa"         toggleGroup="$tipoGroup"/>
+            <RadioButton text="Apartamento"  toggleGroup="$tipoGroup"/>
+            <RadioButton text="Cuarto"       toggleGroup="$tipoGroup"/>
+            <RadioButton text="Tugurio"      toggleGroup="$tipoGroup"/>
+            <RadioButton text="Albergue"     toggleGroup="$tipoGroup"/>
+            <RadioButton text="Ninguna"      toggleGroup="$tipoGroup"/>
+        </HBox>
+    </VBox>
+
+    <!-- Tenencia -->
+    <VBox spacing="8">
+        <Label text="Tenencia" style="-fx-font-weight: bold;"/>
+        <HBox spacing="12">
+            <RadioButton text="Propia"        toggleGroup="$tenenciaGroup"/>
+            <RadioButton text="Paga a plazos" toggleGroup="$tenenciaGroup"/>
+            <RadioButton text="Alquilada"     toggleGroup="$tenenciaGroup"/>
+            <RadioButton text="Prestada"      toggleGroup="$tenenciaGroup"/>
+            <RadioButton text="Precario"      toggleGroup="$tenenciaGroup"/>
+        </HBox>
+    </VBox>
+
+    <!-- Condición -->
+    <VBox spacing="8">
+        <Label text="Condición de la vivienda" style="-fx-font-weight: bold;"/>
+        <HBox spacing="12">
+            <RadioButton text="Buena"     toggleGroup="$condicionGroup"/>
+            <RadioButton text="Regular"   toggleGroup="$condicionGroup"/>
+            <RadioButton text="Mala"      toggleGroup="$condicionGroup"/>
+            <RadioButton text="No aplica" toggleGroup="$condicionGroup"/>
+        </HBox>
+    </VBox>
+
+</VBox>

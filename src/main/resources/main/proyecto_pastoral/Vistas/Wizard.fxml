@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.WizardController">
+
+          <!-- ═══ BARRA DE PROGRESO SUPERIOR ═══ -->
+    <top>
+        <VBox style="-fx-background-color: #2c3e50; -fx-padding: 16 24;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;" text="Ficha de Registro - Pastoral Social Diócesis de Cartago" />
+            <HBox alignment="CENTER" spacing="0" style="-fx-padding: 12 0 0 0;">
+
+                      <VBox fx:id="indicador1" alignment="CENTER" onMouseClicked="#irAPaso1" prefWidth="120" style="-fx-cursor: hand;">
+                    <Label fx:id="circulo1" style="-fx-background-color: #27ae60; -fx-text-fill: white;                                   -fx-font-weight: bold; -fx-min-width: 32; -fx-min-height: 32;                                   -fx-background-radius: 16; -fx-alignment: center;" text="1" />
+                    <Label style="-fx-text-fill: #27ae60; -fx-font-size: 11px;" text="Registro" />
+                </VBox>
+
+                      <Label style="-fx-text-fill: #5d6d7e;" text="────" />
+
+                      <VBox fx:id="indicador2" alignment="CENTER" prefWidth="120">
+                    <Label fx:id="circulo2" style="-fx-background-color: #5d6d7e; -fx-text-fill: white;                                   -fx-font-weight: bold; -fx-min-width: 32; -fx-min-height: 32;                                   -fx-background-radius: 16; -fx-alignment: center;" text="2" />
+                    <Label style="-fx-text-fill: #5d6d7e; -fx-font-size: 11px;" text="Vivienda" />
+                </VBox>
+
+                      <Label style="-fx-text-fill: #5d6d7e;" text="────" />
+
+                      <VBox fx:id="indicador3" alignment="CENTER" prefWidth="120">
+                    <Label fx:id="circulo3" style="-fx-background-color: #5d6d7e; -fx-text-fill: white;                                   -fx-font-weight: bold; -fx-min-width: 32; -fx-min-height: 32;                                   -fx-background-radius: 16; -fx-alignment: center;" text="3" />
+                    <Label style="-fx-text-fill: #5d6d7e; -fx-font-size: 11px;" text="Personas" />
+                </VBox>
+
+                      <Label style="-fx-text-fill: #5d6d7e;" text="────" />
+
+                      <VBox fx:id="indicador4" alignment="CENTER" prefWidth="120">
+                    <Label fx:id="circulo4" style="-fx-background-color: #5d6d7e; -fx-text-fill: white;                                   -fx-font-weight: bold; -fx-min-width: 32; -fx-min-height: 32;                                   -fx-background-radius: 16; -fx-alignment: center;" text="4" />
+                    <Label style="-fx-text-fill: #5d6d7e; -fx-font-size: 11px;" text="Asistencia" />
+                </VBox>
+
+                      <Label style="-fx-text-fill: #5d6d7e;" text="────" />
+
+                      <VBox fx:id="indicador5" alignment="CENTER" prefWidth="120">
+                    <Label fx:id="circulo5" style="-fx-background-color: #5d6d7e; -fx-text-fill: white;                                   -fx-font-weight: bold; -fx-min-width: 32; -fx-min-height: 32;                                   -fx-background-radius: 16; -fx-alignment: center;" text="5" />
+                    <Label style="-fx-text-fill: #5d6d7e; -fx-font-size: 11px;" text="Cierre" />
+                </VBox>
+
+                  </HBox>
+        </VBox>
+    </top>
+
+          <!-- ═══ CONTENIDO CENTRAL ═══ -->
+    <center>
+        <StackPane fx:id="contenedor" style="-fx-padding: 24;" />
+    </center>
+
+          <!-- ═══ BOTONES INFERIORES ═══ -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="12" style="-fx-padding: 16 24; -fx-background-color: white;                      -fx-border-color: #dde1e7; -fx-border-width: 1 0 0 0;">
+            <Label fx:id="lblMensaje" style="-fx-font-size: 13px; -fx-font-weight: bold;" text="" wrapText="true" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnAnterior" onAction="#anterior" style="-fx-background-color: #bdc3c7; -fx-text-fill: #2c3e50;                            -fx-padding: 9 20; -fx-background-radius: 6; -fx-cursor: hand;" text="Anterior" />
+            <Button fx:id="btnSiguiente" onAction="#siguiente" style="-fx-background-color: #2980b9; -fx-text-fill: white;                            -fx-font-weight: bold; -fx-padding: 9 20;                            -fx-background-radius: 6; -fx-cursor: hand;" text="Siguiente" />
+        </HBox>
+    </bottom>
+
+      </BorderPane>

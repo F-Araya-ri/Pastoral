@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;
+                           -fx-border-radius: 8; -fx-background-radius: 8;"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso4Controller">
+
+    <Label text="Datos de la asistencia brindada" style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <Separator/>
+
+    <HBox spacing="12">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Tipo de asistencia" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cmbTipoAsistencia" promptText="Seleccione tipo" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Modalidad" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="txtModalidad" promptText="Modalidad"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="12">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Frecuencia" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="txtFrecuencia" promptText="Ej: Mensual, semanal"/>
+        </VBox>
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Duración" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="txtDuracion" promptText="Ej: 3 meses"/>
+        </VBox>
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Valor (₡)" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="txtValor" promptText="0.00"/>
+        </VBox>
+    </HBox>
+
+    <Button text="Agregar asistencia" onAction="#agregarAsistencia"
+            style="-fx-background-color: #27ae60; -fx-text-fill: white;
+                   -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 6;
+                   -fx-cursor: hand;"/>
+
+    <TableView fx:id="tablaAsistencias" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="colTipo"       text="Tipo"       prefWidth="180"/>
+            <TableColumn fx:id="colModalidad"  text="Modalidad"  prefWidth="120"/>
+            <TableColumn fx:id="colFrecuencia" text="Frecuencia" prefWidth="100"/>
+            <TableColumn fx:id="colDuracion"   text="Duración"   prefWidth="90"/>
+            <TableColumn fx:id="colValor"      text="Valor"      prefWidth="80"/>
+        </columns>
+        <placeholder><Label text="No hay asistencias agregadas"/></placeholder>
+    </TableView>
+
+</VBox>
