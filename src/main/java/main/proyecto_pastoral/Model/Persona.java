@@ -26,7 +26,7 @@ public class Persona {
     private String sexo;
 
     @Column(name = "Jefatura")
-    private boolean jefatura;
+    private String jefatura;
 
     @Column(name = "Relacion", length = 100)
     private String relacion;
@@ -59,7 +59,7 @@ public class Persona {
     public Persona() {}
 
     public Persona(String tipoDocumento, String numeroIdentificacion,
-                   String nombre,String sexo, boolean jefatura, String relacion, int edad,
+                   String nombre,String sexo, String jefatura, String relacion, int edad,
                    String pais, String migracion, String educacion,
                    String salud, String seguro, Registro registro) {
         this.tipoDocumento = tipoDocumento;
@@ -83,8 +83,8 @@ public class Persona {
     public String getTipoDocumento() { return tipoDocumento; }
     public void setTipoDocumento(String tipoDocumento) { this.tipoDocumento = tipoDocumento; }
 
-    public String getnumeroIdentificacion() { return numeroIdentificacion; }
-    public void setnumeroIdentificacion(String numeroIdentificacion) { this.numeroIdentificacion = numeroIdentificacion; }
+    public String getNumeroIdentificacion() { return numeroIdentificacion; }
+    public void setNumeroIdentificacion(String numeroIdentificacion) { this.numeroIdentificacion = numeroIdentificacion; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -92,8 +92,8 @@ public class Persona {
     public String getSexo() { return sexo; }
     public void setSexo(String sexo) { this.sexo = sexo; }
 
-    public boolean isJefatura() { return jefatura; }
-    public void setJefatura(boolean jefatura) { this.jefatura = jefatura; }
+    public String isJefatura() { return jefatura; }
+    public void setJefatura(String jefatura) { this.jefatura = jefatura; }
 
     public String getRelacion() { return relacion; }
     public void setRelacion(String relacion) { this.relacion = relacion; }

@@ -107,7 +107,7 @@ public class Paso1Controller implements Initializable {
             @Override
             protected void updateItem(Entrevistador e, boolean empty) {
                 super.updateItem(e, empty);
-                setText(empty || e == null ? null : e.getNombre());
+                setText(empty || e == null ? null : e.getNombreCompleto());
             }
         });
         cbEntrevistador.setButtonCell(new ListCell<>() {

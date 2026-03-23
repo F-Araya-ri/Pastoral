@@ -21,9 +21,8 @@ import java.util.function.Consumer;
 public class Paso3Controller implements Initializable {
 
     @FXML private TextField txtNombre, txtDocumento, txtEdad, txtPais;
-    @FXML private TextField txtMigracion, txtEducacion, txtSalud, txtSeguro;
     @FXML private TextField txtOcupacion, txtIngreso;
-    @FXML private ComboBox<String> cmbTipoDoc, cmbSexo, cmbRelacion;
+    @FXML private ComboBox<String> cmbTipoDoc,cmbSexo,cmbRelacion,cmbMigracion,cmbEducacion,cmbSalud,cmbSeguro;
     @FXML private CheckBox chkJefatura, chkTrabaja;
     @FXML private TableView<Persona> tablaPersonas;
     @FXML private TableColumn<Persona, String>  colNombre, colDocumento, colSexo, colRelacion;
@@ -43,7 +42,10 @@ public class Paso3Controller implements Initializable {
         cmbTipoDoc.setItems(FXCollections.observableArrayList("Cédula", "DIMEX", "Pasaporte", "Sin documento"));
         cmbSexo.setItems(FXCollections.observableArrayList("Masculino", "Femenino", "Otro"));
         cmbRelacion.setItems(FXCollections.observableArrayList("Jefe/a", "Cónyuge", "Hijo/a", "Padre/Madre", "Otro familiar", "No familiar"));
-
+        cmbMigracion.setItems(FXCollections.observableArrayList("Ciudadano/a","Residentes Permanente","No Inmigrante","Protegido","Indocumentados"));
+        cmbEducacion.setItems(FXCollections.observableArrayList("Educación Preescolar","Educación General Básica","Educación Diversificada","Educación Superior"));
+        cmbSeguro.setItems(FXCollections.observableArrayList("Asegurado","No asegurado","En trámite/Proceso"));
+        cmbSalud.setItems(FXCollections.observableArrayList("Excelente","Bueno","Regular","Malo/Delicado"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colDocumento.setCellValueFactory(new PropertyValueFactory<>("numeroIdentificacion"));
         colSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
@@ -62,23 +64,32 @@ public class Paso3Controller implements Initializable {
         persona.setRegistro(registro);
         persona.setNombre(txtNombre.getText().trim());
         persona.setTipoDocumento(cmbTipoDoc.getValue());
-        persona.setnumeroIdentificacion(txtDocumento.getText().trim());
+        persona.setNumeroIdentificacion(txtDocumento.getText().trim());
         persona.setSexo(cmbSexo.getValue());
-        persona.setJefatura(chkJefatura.isSelected());
+        if (!chkJefatura.isSelected()){
+            persona.setJefatura("SI");
+        }else{
+            persona.setJefatura("NO");
+        }
         persona.setRelacion(cmbRelacion.getValue());
         persona.setEdad(txtEdad.getText().isEmpty() ? 0 : Integer.parseInt(txtEdad.getText().trim()));
         persona.setPais(txtPais.getText().trim());
-        persona.setMigracion(txtMigracion.getText().trim());
-        persona.setEducacion(txtEducacion.getText().trim());
-        persona.setSalud(txtSalud.getText().trim());
-        persona.setSeguro(txtSeguro.getText().trim());
+        persona.setMigracion(cmbMigracion.getValue());
+        persona.setEducacion(cmbEducacion.getValue());
+        persona.setSalud(cmbSalud.getValue());
+        persona.setSeguro(cmbSeguro.getValue());
         personaDAO.guardar(persona);
 
         // Guardar ingreso familiar
         IngresoFamiliar ingreso = new IngresoFamiliar();
         ingreso.setPersona(persona);
         ingreso.setOcupacion(txtOcupacion.getText().trim());
-        ingreso.setTrabaja(chkTrabaja.isSelected());
+
+        if (!chkTrabaja.isSelected()){
+            ingreso.setTrabaja("SI");
+        }else{
+            ingreso.setTrabaja("NO");
+        }
         if (!txtIngreso.getText().isEmpty()) {
             ingreso.setIngresoMensual(new BigDecimal(txtIngreso.getText().trim()));
         }
@@ -90,11 +101,11 @@ public class Paso3Controller implements Initializable {
 
     private void limpiarFormularioPersona() {
         txtNombre.clear(); txtDocumento.clear(); txtEdad.clear();
-        txtPais.clear(); txtMigracion.clear(); txtEducacion.clear();
-        txtSalud.clear(); txtSeguro.clear(); txtOcupacion.clear();
-        txtIngreso.clear(); chkJefatura.setSelected(false);
-        chkTrabaja.setSelected(false); cmbTipoDoc.setValue(null);
-        cmbSexo.setValue(null); cmbRelacion.setValue(null);
+        txtPais.clear();  txtOcupacion.clear();txtIngreso.clear();
+        chkJefatura.setSelected(false);chkTrabaja.setSelected(false);
+        cmbTipoDoc.setValue(null);cmbSexo.setValue(null); cmbRelacion.setValue(null);
+        cmbMigracion.setValue(null); cmbSalud.setValue(null); cmbEducacion.setValue(null);
+        cmbSeguro.setValue(null);
     }
 
     public boolean validar(Consumer<String> mostrarError) {

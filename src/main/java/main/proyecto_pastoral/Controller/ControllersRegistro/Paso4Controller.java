@@ -17,11 +17,16 @@ import java.util.ResourceBundle;
 
 public class Paso4Controller implements Initializable {
 
-    @FXML private ComboBox<String> cmbTipoAsistencia;
-    @FXML private TextField txtModalidad, txtFrecuencia, txtDuracion, txtValor;
-    @FXML private TableView<Asistencia>  tablaAsistencias;
-    @FXML private TableColumn<Asistencia, String>     colTipo, colModalidad, colFrecuencia, colDuracion;
-    @FXML private TableColumn<Asistencia, BigDecimal> colValor;
+    @FXML
+    private ComboBox<String> cmbTipoAsistencia, cmbModalidad, cmbFrecuencia;
+    @FXML
+    private TextField txtDuracion, txtValor;
+    @FXML
+    private TableView<Asistencia> tablaAsistencias;
+    @FXML
+    private TableColumn<Asistencia, String> colTipo, colModalidad, colFrecuencia, colDuracion;
+    @FXML
+    private TableColumn<Asistencia, BigDecimal> colValor;
 
     private AsistenciaDAO asistenciaDAO;
     private Registro registro;
@@ -34,8 +39,10 @@ public class Paso4Controller implements Initializable {
         cmbTipoAsistencia.setItems(FXCollections.observableArrayList(
                 "Alimentos", "Arts. higiene y limpieza", "Indumentaria",
                 "Alquiler", "Servicios (luz, agua, otros)",
-                "Medicamentos", "Aparatos ortopédicos",
-                "Otros (especifique)"));
+                "Medicamentos", "Aparatos ortopédicos"));
+
+        cmbModalidad.setItems(FXCollections.observableArrayList("En especie","Efectivo","Pago directo","Subsidio"));
+        cmbFrecuencia.setItems(FXCollections.observableArrayList("Única vez","Semanal","Quincenal","Mensual","Trimestral","Anual"));
 
         colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colModalidad.setCellValueFactory(new PropertyValueFactory<>("modalidad"));
@@ -45,7 +52,9 @@ public class Paso4Controller implements Initializable {
         tablaAsistencias.setItems(listaAsistencias);
     }
 
-    public void setRegistro(Registro registro) { this.registro = registro; }
+    public void setRegistro(Registro registro) {
+        this.registro = registro;
+    }
 
     @FXML
     private void agregarAsistencia() {
@@ -54,8 +63,8 @@ public class Paso4Controller implements Initializable {
         Asistencia asistencia = new Asistencia();
         asistencia.setRegistro(registro);
         asistencia.setTipo(cmbTipoAsistencia.getValue());
-        asistencia.setModalidad(txtModalidad.getText().trim());
-        asistencia.setFrecuencia(txtFrecuencia.getText().trim());
+        asistencia.setModalidad(cmbModalidad.getValue());
+        asistencia.setFrecuencia(cmbFrecuencia.getValue());
         asistencia.setDuracion(txtDuracion.getText().trim());
         if (!txtValor.getText().isEmpty()) {
             asistencia.setValor(new BigDecimal(txtValor.getText().trim()));
@@ -64,9 +73,13 @@ public class Paso4Controller implements Initializable {
         listaAsistencias.add(asistencia);
 
         cmbTipoAsistencia.setValue(null);
-        txtModalidad.clear(); txtFrecuencia.clear();
-        txtDuracion.clear(); txtValor.clear();
+        cmbFrecuencia.setValue(null);
+        cmbModalidad.setValue(null);
+        txtDuracion.clear();
+        txtValor.clear();
     }
 
-    public int getCantidadAsistencias() { return listaAsistencias.size(); }
+    public int getCantidadAsistencias() {
+        return listaAsistencias.size();
+    }
 }

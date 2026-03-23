@@ -20,7 +20,7 @@ public class IngresoFamiliar {
     private String ocupacion;
 
     @Column(name = "Trabaja")
-    private Boolean trabaja;
+    private String trabaja;
 
     @Column(name = "IngresoMensual", precision = 10, scale = 2)
     private BigDecimal ingresoMensual;
@@ -36,8 +36,8 @@ public class IngresoFamiliar {
     public String getOcupacion() { return ocupacion; }
     public void setOcupacion(String ocupacion) { this.ocupacion = ocupacion; }
 
-    public Boolean getTrabaja() { return trabaja; }
-    public void setTrabaja(Boolean trabaja) { this.trabaja = trabaja; }
+    public String getTrabaja() { return trabaja; }
+    public void setTrabaja(String trabaja) { this.trabaja = trabaja; }
 
     public BigDecimal getIngresoMensual() { return ingresoMensual; }
     public void setIngresoMensual(BigDecimal ingresoMensual) { this.ingresoMensual = ingresoMensual; }

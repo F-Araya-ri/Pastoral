@@ -17,14 +17,14 @@
         </VBox>
         <VBox spacing="4" HBox.hgrow="ALWAYS">
             <Label text="Modalidad" style="-fx-font-weight: bold;"/>
-            <TextField fx:id="txtModalidad" promptText="Modalidad"/>
+            <ComboBox fx:id="cmbModalidad" promptText="Modalidad"/>
         </VBox>
     </HBox>
 
     <HBox spacing="12">
         <VBox spacing="4" HBox.hgrow="ALWAYS">
             <Label text="Frecuencia" style="-fx-font-weight: bold;"/>
-            <TextField fx:id="txtFrecuencia" promptText="Ej: Mensual, semanal"/>
+            <ComboBox fx:id="cmbFrecuencia" promptText="Ej: Mensual, semanal"/>
         </VBox>
         <VBox spacing="4" HBox.hgrow="ALWAYS">
             <Label text="Duración" style="-fx-font-weight: bold;"/>

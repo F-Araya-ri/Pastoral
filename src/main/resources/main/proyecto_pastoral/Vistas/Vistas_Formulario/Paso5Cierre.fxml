@@ -26,13 +26,6 @@
         </VBox>
     </HBox>
 
-    <VBox spacing="8">
-        <Label text="Prolongaciones de la ayuda" style="-fx-font-weight: bold;"/>
-        <HBox spacing="12">
-
-        </HBox>
-    </VBox>
-
     <Button text="Guardar ficha completa" onAction="#guardarFicha"
             maxWidth="Infinity"
             style="-fx-background-color: #27ae60; -fx-text-fill: white;

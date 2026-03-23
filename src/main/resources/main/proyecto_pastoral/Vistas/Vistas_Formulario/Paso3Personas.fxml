@@ -63,19 +63,19 @@
               </VBox>
               <VBox spacing="4" HBox.hgrow="ALWAYS">
                   <Label style="-fx-font-weight: bold;" text="Migración" />
-                  <TextField fx:id="txtMigracion" promptText="Estado migratorio" />
+                  <ComboBox fx:id="cmbMigracion" promptText="Estado migratorio" />
               </VBox>
               <VBox spacing="4" HBox.hgrow="ALWAYS">
                   <Label style="-fx-font-weight: bold;" text="Educación" />
-                  <TextField fx:id="txtEducacion" promptText="Nivel educativo" />
+                  <ComboBox fx:id="cmbEducacion" promptText="Nivel educativo" />
               </VBox>
               <VBox spacing="4" HBox.hgrow="ALWAYS">
                   <Label style="-fx-font-weight: bold;" text="Salud" />
-                  <TextField fx:id="txtSalud" promptText="Condición de salud" />
+                  <ComboBox fx:id="cmbSalud" promptText="Condición de salud" />
               </VBox>
               <VBox spacing="4" HBox.hgrow="ALWAYS">
                   <Label style="-fx-font-weight: bold;" text="Seguro" />
-                  <TextField fx:id="txtSeguro" promptText="Tipo de seguro" />
+                  <ComboBox fx:id="cmbSeguro" promptText="Tipo de seguro" />
               </VBox>
           </HBox>
       
