@@ -185,19 +185,9 @@ public class ParroquiaSectorController implements Initializable {
         lblMensaje.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px; -fx-font-weight: bold;");
     }
     //---------------------------------------------------------------------------
-    // CREANDO BOTON PARA ENTRAR AL REGISTRO y CREAR USUARIO CREADO POR FABIANA
+    // CREANDO BOTON PARA ENTRAR AL INICIOREGISTRO y CREAR USUARIO CREADO POR FABIANA
     //------------------------------------------------------------------------
-    @FXML
-    private void abrirRegistroForms() throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Registro.fxml"));
-        Scene registroScene = new Scene(loader.load(), 640, 500);
 
-        Stage stage = new Stage();
-        stage.setTitle("Registro Pastoral");
-        stage.setScene(registroScene);
-        stage.show();
-
-    }
     @FXML
     private void abrirEntrevistadorForms() throws IOException {
         FXMLLoader loader = new FXMLLoader(
@@ -206,6 +196,18 @@ public class ParroquiaSectorController implements Initializable {
         Scene scene = new Scene(loader.load(), 500, 480);
         Stage stage = new Stage();
         stage.setTitle("Entrevistadores");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void abrirInicioRegistro() throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                App.class.getResource("Vistas/Inicioregistroforms.fxml")
+        );
+        Scene scene = new Scene(loader.load(), 400, 300);
+        Stage stage = new Stage();
+        stage.setTitle("Inicio de Registro");
         stage.setScene(scene);
         stage.show();
     }
