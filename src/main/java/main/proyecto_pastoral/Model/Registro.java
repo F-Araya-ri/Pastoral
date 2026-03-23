@@ -23,6 +23,12 @@ public class Registro {
     @Column(name = "Observaciones", columnDefinition = "TEXT")
     private String observaciones;
 
+    @Column(name = "Direccion", columnDefinition = "TEXT")
+    private String direccion;
+
+    @Column(name = "Telefono")
+    private String telefono;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdSector", nullable = false)
     private Sector sector;
@@ -59,6 +65,12 @@ public class Registro {
 
     public String getObservaciones() { return observaciones; }
     public void setObservaciones(String observaciones) { this.observaciones = observaciones; }
+
+    public String getDireccion() { return direccion; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
+
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
 
     public Sector getSector() { return sector; }
     public void setSector(Sector sector) { this.sector = sector; }

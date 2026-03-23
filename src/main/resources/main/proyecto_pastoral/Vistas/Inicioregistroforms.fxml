@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="620" prefWidth="700" style="-fx-background-color: #F2F4EE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.InicioRegistroController">
+
+    <VBox spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+        <!-- CABECERA -->
+        <VBox alignment="CENTER" spacing="2" style="-fx-background-color: #3D4A20;                      -fx-padding: 22 32 18 32;">
+
+            <HBox alignment="CENTER" spacing="14">
+                <Label style="-fx-font-size: 28px; -fx-text-fill: #C8D4A0;" text="✟" />
+                <VBox alignment="CENTER_LEFT" spacing="1">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;                                   -fx-text-fill: #F5F0E8;" text="PASTORAL SOCIAL" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #A8B880;" text="Diócesis de Cartago" />
+                </VBox>
+            </HBox>
+
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #7A8A5A;" text="Sistema de Fichas de Registro de Participantes" />
+        </VBox>
+
+        <!-- PANEL DE CREACIÓN -->
+        <VBox spacing="14" style="-fx-background-color: #EAEDE0;                      -fx-padding: 18 28 18 28;                      -fx-border-color: #C8D099;                      -fx-border-width: 0 0 1 0;">
+
+            <Label style="-fx-font-size: 12px; -fx-font-weight: bold;                           -fx-text-fill: #3D4A20;" text="Crear nuevo registro" />
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <!-- Botón crear -->
+                <Button fx:id="btnRegistroForms" defaultButton="true" onAction="#abrirRegistroForms" prefHeight="36" style="-fx-background-color: #5D682D;
+                    -fx-text-fill: white;
+                    -fx-font-size: 12px;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 7;
+                    -fx-cursor: hand;
+                     -fx-padding: 0 18;" text="＋  Crear Registro" />
+            </HBox>
+
+            <!-- Mensaje de validación -->
+            <Label fx:id="lblMensaje" maxWidth="1.7976931348623157E308" minHeight="16" style="-fx-font-size: 11px;" text="" wrapText="true" />
+        </VBox>
+
+        <!-- PANEL DE FILTROS DE BÚSQUEDA -->
+        <VBox style="-fx-background-color: #EAEDE0; -fx-padding: 14 28; -fx-border-color: #C8D099; -fx-border-width: 0 0 1 0;" spacing="10">
+            <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="BUSCAR Y FILTRAR REGISTROS" />
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <VBox spacing="3" minWidth="120">
+                    <Label style="-fx-font-size: 10px; -fx-text-fill: #5D6A40;" text="ID Registro" />
+                    <TextField fx:id="txtFiltroIdRegistro" promptText="Ej: 001" style="-fx-font-size: 11px; -fx-padding: 5 8; -fx-border-radius: 5; -fx-border-color: #B0BE82;" />
+                </VBox>
+                <VBox spacing="3" minWidth="150" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 10px; -fx-text-fill: #5D6A40;" text="Parroquia" />
+                    <ComboBox fx:id="cbFiltroParroquia" maxWidth="Infinity" style="-fx-font-size: 11px; -fx-border-radius: 5; -fx-border-color: #B0BE82;" />
+                </VBox>
+                <VBox spacing="3" minWidth="150" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-size: 10px; -fx-text-fill: #5D6A40;" text="Entrevistador" />
+                    <ComboBox fx:id="cbFiltroEntrevistador" maxWidth="Infinity" style="-fx-font-size: 11px; -fx-border-radius: 5; -fx-border-color: #B0BE82;" />
+                </VBox>
+                <VBox spacing="4">
+                    <Label style="-fx-font-size: 10px;" text=" " />
+                    <Button fx:id="btnBuscar" text="🔍 Buscar" style="-fx-padding: 6 20; -fx-font-size: 11px; -fx-background-color: #5D682D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" onAction="#buscarRegistro" />
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- ENCABEZADO DE REGISTROS -->
+        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 14 28 10 28;                      -fx-background-color: #F2F4EE;">
+
+            <Label style="-fx-font-size: 13px; -fx-font-weight: bold;                           -fx-text-fill: #3D4A20;" text="Registros activos" />
+
+            <Label fx:id="lblContador" style="-fx-background-color: #C8D099;                           -fx-background-radius: 10;                           -fx-padding: 2 9;                           -fx-font-size: 10px;                           -fx-font-weight: bold;                           -fx-text-fill: #3D4A20;" text="0 registros" />
+
+            <!-- Separador -->
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Label style="-fx-font-size: 10px; -fx-text-fill: #8A9470;" text="Los más recientes aparecen primero" />
+        </HBox>
+
+        <!-- LISTA DE REGISTROS -->
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;                            -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+
+            <VBox fx:id="vboxRegistros" spacing="10" style="-fx-padding: 0 28 24 28;                          -fx-background-color: #F2F4EE;">
+                <!-- Las filas de registro se agregan programáticamente aquí -->
+            </VBox>
+        </ScrollPane>
+
+    </VBox>
+</AnchorPane>
