@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 
 public class Paso3Controller implements Initializable {
 
-    @FXML private TextField txtNombre,txtprimerApellido,txtsegundoApellido, txtDocumento, txtEdad, txtPais;
+    @FXML private TextField txtNombre,txtprimerApellido,txtsegundoApellido, txtDocumento, txtEdad, txtPais,txtTelfono;
     @FXML private TextField txtOcupacion, txtIngreso;
     @FXML private ComboBox<String> cmbTipoDoc,cmbSexo,cmbRelacion,cmbMigracion,cmbEducacion,cmbSalud,cmbSeguro;
     @FXML private CheckBox chkJefatura, chkTrabaja;
@@ -78,6 +78,7 @@ public class Paso3Controller implements Initializable {
         }
         persona.setRelacion(cmbRelacion.getValue());
         persona.setEdad(txtEdad.getText().isEmpty() ? 0 : Integer.parseInt(txtEdad.getText().trim()));
+        persona.setTelefono(txtTelfono.getText().trim());
         persona.setPais(txtPais.getText().trim());
         persona.setMigracion(cmbMigracion.getValue());
         persona.setEducacion(cmbEducacion.getValue());
@@ -107,7 +108,7 @@ public class Paso3Controller implements Initializable {
     private void limpiarFormularioPersona() {
         txtNombre.clear(); txtprimerApellido.clear();txtDocumento.clear(); txtEdad.clear();
         txtPais.clear();  txtOcupacion.clear();txtIngreso.clear(); txtsegundoApellido.clear();
-        chkJefatura.setSelected(false);chkTrabaja.setSelected(false);
+       txtTelfono.clear(); chkJefatura.setSelected(false);chkTrabaja.setSelected(false);
         cmbTipoDoc.setValue(null);cmbSexo.setValue(null); cmbRelacion.setValue(null);
         cmbMigracion.setValue(null); cmbSalud.setValue(null); cmbEducacion.setValue(null);
         cmbSeguro.setValue(null);

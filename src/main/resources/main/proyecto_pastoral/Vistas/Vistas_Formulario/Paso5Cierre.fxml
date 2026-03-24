@@ -5,7 +5,7 @@
 <VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;
                            -fx-border-radius: 8; -fx-background-radius: 8;"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso5CierreController">
+      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso5CierreController" stylesheets="@../../../../formulario-pastoral.css">
 
     <Label text="Cierre del registro" style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
     <Separator/>

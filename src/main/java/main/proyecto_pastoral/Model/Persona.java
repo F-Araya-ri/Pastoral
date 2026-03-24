@@ -28,6 +28,9 @@ public class Persona {
     @Column(name = "SegundoApellido", nullable = false, length = 150)
     private String SegundoApellido;
 
+    @Column(name = "Telefono")
+    private String telefono;
+
     @Column(name = "Sexo", length = 20)
     private String sexo;
 
@@ -65,7 +68,7 @@ public class Persona {
     public Persona() {}
 
     public Persona(String tipoDocumento, String numeroIdentificacion,
-                   String nombre,String primerApellido,String segundoApellido,String sexo, String jefatura, String relacion, int edad,
+                   String nombre,String primerApellido,String segundoApellido,String telefono,String sexo, String jefatura, String relacion, int edad,
                    String pais, String migracion, String educacion,
                    String salud, String seguro, Registro registro) {
         this.tipoDocumento = tipoDocumento;
@@ -73,6 +76,7 @@ public class Persona {
         this.nombre = nombre;
         this.PrimerApellido = primerApellido;
         this.SegundoApellido =segundoApellido;
+        this.telefono = telefono;
         this.sexo = sexo;
         this.jefatura = jefatura;
         this.relacion = relacion;
@@ -145,6 +149,14 @@ public class Persona {
     public void setPrimerApellido(String primerApellido) {
         PrimerApellido = primerApellido;
     }
+
+    public String getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getNombreCompleto(){
         return nombre + " " + PrimerApellido + " " + SegundoApellido;
     }

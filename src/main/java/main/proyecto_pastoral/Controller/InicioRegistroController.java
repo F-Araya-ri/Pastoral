@@ -46,25 +46,33 @@ public class InicioRegistroController implements Initializable {
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // ── ELEMENTOS DE LA PANTALLA ──────────────────────────────────────
-    @FXML private Button                  btnRegistroForms;
-    @FXML private Label                   lblMensaje;
+    @FXML
+    private Button btnRegistroForms;
+    @FXML
+    private Label lblMensaje;
 
     // Filtros de búsqueda
-    @FXML private TextField txtFiltroIdRegistro;
-    @FXML private ComboBox<Parroquia> cbFiltroParroquia;
-    @FXML private ComboBox<Entrevistador> cbFiltroEntrevistador;
-    @FXML private Button btnBuscar;
+    @FXML
+    private TextField txtFiltroIdRegistro;
+    @FXML
+    private ComboBox<Parroquia> cbFiltroParroquia;
+    @FXML
+    private ComboBox<Entrevistador> cbFiltroEntrevistador;
+    @FXML
+    private Button btnBuscar;
 
     // El VBox donde se agregan las filas de registros dinámicamente
-    @FXML private VBox                    vboxRegistros;
+    @FXML
+    private VBox vboxRegistros;
 
     // Label que muestra cuántos registros hay
-    @FXML private Label                   lblContador;
+    @FXML
+    private Label lblContador;
 
     // ── DAOs ──────────────────────────────────────────────────────────
-    private RegistroDAO      registroDAO;
-    private PersonaDAO       personaDAO;
-    private ParroquiaDAO     parroquiaDAO;
+    private RegistroDAO registroDAO;
+    private PersonaDAO personaDAO;
+    private ParroquiaDAO parroquiaDAO;
     private EntrevistadorDAO entrevistadorDAO;
 
     // Lista observable de registros en pantalla
@@ -78,9 +86,9 @@ public class InicioRegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
-        registroDAO      = new RegistroDAO(sf);
-        personaDAO       = new PersonaDAO(sf);
-        parroquiaDAO     = new ParroquiaDAO(sf);
+        registroDAO = new RegistroDAO(sf);
+        personaDAO = new PersonaDAO(sf);
+        parroquiaDAO = new ParroquiaDAO(sf);
         entrevistadorDAO = new EntrevistadorDAO(sf);
 
         cargarFiltros();
@@ -220,7 +228,7 @@ public class InicioRegistroController implements Initializable {
 
         // ── Animación de entrada ───────────────────────────────────────────
         fila.setOpacity(0);
-        vboxRegistros.getChildren().add(0, fila); // Agrega al inicio (más reciente primero)
+        vboxRegistros.getChildren().addFirst(fila); // Agrega al inicio (más reciente primero)
 
         FadeTransition fade = new FadeTransition(Duration.millis(400), fila);
         fade.setFromValue(0);
@@ -377,20 +385,30 @@ public class InicioRegistroController implements Initializable {
             List<Parroquia> parroquias = parroquiaDAO.listarTodos();
             cbFiltroParroquia.getItems().addAll(parroquias);
             cbFiltroParroquia.setConverter(new javafx.util.StringConverter<Parroquia>() {
-                @Override public String toString(Parroquia p) {
+                @Override
+                public String toString(Parroquia p) {
                     return p != null ? p.getNombreParroquia() : "";
                 }
-                @Override public Parroquia fromString(String s) { return null; }
+
+                @Override
+                public Parroquia fromString(String s) {
+                    return null;
+                }
             });
 
             // Cargar entrevistadores
             List<Entrevistador> entrevistadores = entrevistadorDAO.listarTodos();
             cbFiltroEntrevistador.getItems().addAll(entrevistadores);
             cbFiltroEntrevistador.setConverter(new javafx.util.StringConverter<Entrevistador>() {
-                @Override public String toString(Entrevistador e) {
+                @Override
+                public String toString(Entrevistador e) {
                     return e != null ? e.getNombre() : "";
                 }
-                @Override public Entrevistador fromString(String s) { return null; }
+
+                @Override
+                public Entrevistador fromString(String s) {
+                    return null;
+                }
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -469,7 +487,7 @@ public class InicioRegistroController implements Initializable {
     @FXML
     private void abrirRegistroForms() throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Wizard.fxml"));
-        Scene registroScene = new Scene(loader.load(), 640, 500);
+        Scene registroScene = new Scene(loader.load(), 900, 650);
 
         Stage stage = new Stage();
         stage.setTitle("Registro Pastoral");

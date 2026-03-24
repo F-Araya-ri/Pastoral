@@ -24,6 +24,9 @@ public class Vivienda {
 
     @Column(name = "Condicion")
     private String condicion;
+    @Column(name = "Direccion", columnDefinition = "TEXT")
+    private String direccion;
+
 
     public Vivienda() {}
 
@@ -41,4 +44,12 @@ public class Vivienda {
 
     public String getCondicion() { return condicion; }
     public void setCondicion(String condicion) { this.condicion = condicion; }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 }

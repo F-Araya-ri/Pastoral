@@ -23,11 +23,11 @@ public class FichaCompletaController implements Initializable {
     @FXML private Label lblFechaInicio;
     @FXML private Label lblFechaConclusion;
     @FXML private TextArea txtObservaciones;
+    @FXML private  TextArea txtDireccion;
 
     // ── SECCIÓN 2: DATOS PARROQUIALES ────────────────────────────────
     @FXML private Label lblParroquia;
     @FXML private Label lblSector;
-    @FXML private TextArea txtDireccion;
     @FXML private Label lblTelefono;
 
     // ── SECCIÓN 3: PERSONAS A, B, C ──────────────────────────────────
@@ -85,7 +85,7 @@ public class FichaCompletaController implements Initializable {
     private void poblarFormulario(Registro registro) {
         try {
             // Sección 1: Datos del Registro
-            lblNumeroFicha.setText(String.valueOf(registro.getNumeroRegistro()));  // ✅ FIX: getNumeroRegistro()
+            lblNumeroFicha.setText(String.valueOf(registro.getNumeroRegistro()));
             lblFechaInicio.setText(registro.getFechaInicio() != null
                     ? registro.getFechaInicio().format(FMT) : "---");
             lblFechaConclusion.setText(registro.getFechaConclusion() != null
@@ -94,32 +94,42 @@ public class FichaCompletaController implements Initializable {
                     ? registro.getObservaciones() : "");
 
             // Sección 2: Datos Parroquiales
-            // ✅ FIX: getSector() y getParroquia() con sus getters correctos
             if (registro.getSector() != null) {
                 lblSector.setText(registro.getSector().getNombreSector());
                 if (registro.getSector().getParroquia() != null) {
                     lblParroquia.setText(registro.getSector().getParroquia().getNombreParroquia());
                 }
             }
-            txtDireccion.setText(registro.getDireccion() != null ? registro.getDireccion() : "");
-            lblTelefono.setText(registro.getTelefono() != null ? registro.getTelefono() : "---");
+
 
             // Sección 3: Personas
-            // ✅ FIX: getNumeroRegistro() en lugar de getIdRegistro()
             List<Persona> personas = personaDAO.buscarPorRegistro(registro.getNumeroRegistro());
-            if (personas.size() > 0) poblarPersona(personas.get(0), 'A');
-            if (personas.size() > 1) poblarPersona(personas.get(1), 'B');
-            if (personas.size() > 2) poblarPersona(personas.get(2), 'C');
+
+            if (!personas.isEmpty()) {
+                Persona persona = personas.getFirst();
+                lblTelefono.setText(persona.getTelefono() != null ? persona.getTelefono() : "---");
+
+                // Existing logic for population
+                poblarPersona(personas.get(0), 'A');
+                if (personas.size() > 1) poblarPersona(personas.get(1), 'B');
+                if (personas.size() > 2) poblarPersona(personas.get(2), 'C');
+            } else {
+                lblTelefono.setText("---");
+            }
 
             // Sección 4: Vivienda
             // ✅ FIX: buscarPorRegistro retorna Optional<Vivienda>, se maneja con ifPresent
             Optional<Vivienda> viviendaOpt = viviendaDAO.buscarPorRegistro(registro.getNumeroRegistro());
+
             if (viviendaOpt.isPresent()) {
                 Vivienda vivienda = viviendaOpt.get();
+                txtDireccion.setText(vivienda.getDireccion() != null ? vivienda.getDireccion() : "---");
                 lblTipoVivienda.setText(vivienda.getTipo()      != null ? vivienda.getTipo()      : "---");
                 lblTenencia.setText(vivienda.getTenencia()      != null ? vivienda.getTenencia()  : "---");
                 lblCondicion.setText(vivienda.getCondicion()    != null ? vivienda.getCondicion() : "---");
             } else {
+
+                txtDireccion.setText("---");
                 lblTipoVivienda.setText("---");
                 lblTenencia.setText("---");
                 lblCondicion.setText("---");

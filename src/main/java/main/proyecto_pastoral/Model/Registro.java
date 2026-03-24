@@ -1,6 +1,7 @@
 package main.proyecto_pastoral.Model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,6 @@ public class Registro {
     @Column(name = "Observaciones", columnDefinition = "TEXT")
     private String observaciones;
 
-    @Column(name = "Direccion", columnDefinition = "TEXT")
-    private String direccion;
-
-    @Column(name = "Telefono")
-    private String telefono;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdSector", nullable = false)
     private Sector sector;
@@ -46,7 +41,8 @@ public class Registro {
     @OneToMany(mappedBy = "registro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Asistencia> asistencias = new ArrayList<>();
 
-    public Registro() {}
+    public Registro() {
+    }
 
     public Registro(LocalDate fechaInicio, Sector sector, Entrevistador entrevistador) {
         this.fechaInicio = fechaInicio;
@@ -54,36 +50,75 @@ public class Registro {
         this.entrevistador = entrevistador;
     }
 
-    public int getNumeroRegistro() { return numeroRegistro; }
-    public void setNumeroRegistro(int numeroRegistro) { this.numeroRegistro = numeroRegistro; }
+    public int getNumeroRegistro() {
+        return numeroRegistro;
+    }
 
-    public LocalDate getFechaInicio() { return fechaInicio; }
-    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
+    public void setNumeroRegistro(int numeroRegistro) {
+        this.numeroRegistro = numeroRegistro;
+    }
 
-    public LocalDate getFechaConclusion() { return fechaConclusion; }
-    public void setFechaConclusion(LocalDate fechaConclusion) { this.fechaConclusion = fechaConclusion; }
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
 
-    public String getObservaciones() { return observaciones; }
-    public void setObservaciones(String observaciones) { this.observaciones = observaciones; }
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
 
-    public String getDireccion() { return direccion; }
-    public void setDireccion(String direccion) { this.direccion = direccion; }
+    public LocalDate getFechaConclusion() {
+        return fechaConclusion;
+    }
 
-    public String getTelefono() { return telefono; }
-    public void setTelefono(String telefono) { this.telefono = telefono; }
+    public void setFechaConclusion(LocalDate fechaConclusion) {
+        this.fechaConclusion = fechaConclusion;
+    }
 
-    public Sector getSector() { return sector; }
-    public void setSector(Sector sector) { this.sector = sector; }
+    public String getObservaciones() {
+        return observaciones;
+    }
 
-    public Entrevistador getEntrevistador() { return entrevistador; }
-    public void setEntrevistador(Entrevistador entrevistador) { this.entrevistador = entrevistador; }
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 
-    public Vivienda getVivienda() { return vivienda; }
-    public void setVivienda(Vivienda vivienda) { this.vivienda = vivienda; }
+    public Sector getSector() {
+        return sector;
+    }
 
-    public List<Persona> getPersonas() { return personas; }
-    public void setPersonas(List<Persona> personas) { this.personas = personas; }
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
 
-    public List<Asistencia> getAsistencias() { return asistencias; }
-    public void setAsistencias(List<Asistencia> asistencias) { this.asistencias = asistencias; }
+    public Entrevistador getEntrevistador() {
+        return entrevistador;
+    }
+
+    public void setEntrevistador(Entrevistador entrevistador) {
+        this.entrevistador = entrevistador;
+    }
+
+    public Vivienda getVivienda() {
+        return vivienda;
+    }
+
+    public void setVivienda(Vivienda vivienda) {
+        this.vivienda = vivienda;
+    }
+
+    public List<Persona> getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(List<Persona> personas) {
+        this.personas = personas;
+    }
+
+    public List<Asistencia> getAsistencias() {
+        return asistencias;
+    }
+
+    public void setAsistencias(List<Asistencia> asistencias) {
+        this.asistencias = asistencias;
+    }
 }

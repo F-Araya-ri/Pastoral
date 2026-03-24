@@ -62,16 +62,7 @@
                             <Label fx:id="lblSector" style="-fx-font-weight: bold; -fx-text-fill: #2C3527;" text="---" />
                         </VBox>
                     </HBox>
-                    <HBox spacing="16">
-                        <VBox spacing="4" HBox.hgrow="ALWAYS">
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #7A8A5A;" text="Dirección" />
-                            <TextArea fx:id="txtDireccion" prefRowCount="2" wrapText="true" editable="false" style="-fx-font-size: 11px; -fx-control-inner-background: #F9F9F9; -fx-border-color: #E0E0E0;" />
-                        </VBox>
-                        <VBox minWidth="170" spacing="4">
-                            <Label style="-fx-font-size: 10px; -fx-text-fill: #7A8A5A;" text="Teléfonos de contacto" />
-                            <Label fx:id="lblTelefono" style="-fx-font-weight: bold; -fx-text-fill: #2C3527;" text="---" />
-                        </VBox>
-                    </HBox>
+
                 </VBox>
 
                 <!-- SECCIÓN 3: PERSONAS -->
@@ -135,6 +126,16 @@
                             <Label fx:id="lblCondicion" style="-fx-font-weight: bold; -fx-text-fill: #2C3527;" text="---" />
                         </VBox>
                     </GridPane>
+                    <HBox spacing="16">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #7A8A5A;" text="Dirección" />
+                        <TextArea fx:id="txtDireccion" prefRowCount="2" wrapText="true" editable="false" style="-fx-font-size: 11px; -fx-control-inner-background: #F9F9F9; -fx-border-color: #E0E0E0;" />
+                    </VBox>
+                    <VBox minWidth="170" spacing="4">
+                        <Label style="-fx-font-size: 10px; -fx-text-fill: #7A8A5A;" text="Teléfonos de contacto" />
+                        <Label fx:id="lblTelefono" style="-fx-font-weight: bold; -fx-text-fill: #2C3527;" text="---" />
+                    </VBox>
+                </HBox>
                 </VBox>
 
 

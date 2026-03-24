@@ -81,7 +81,7 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
     public Optional<Persona> buscarJefeFamilia(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
-                            "FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = true", Persona.class)
+                            "FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = 'SI'", Persona.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResultOptional();
         }

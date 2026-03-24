@@ -17,7 +17,7 @@ public class Paso2Controller implements Initializable {
     @FXML private RadioButton rbCasa, rbApartamento, rbCuarto, rbTugurio, rbAlbergue, rbNinguna;
     @FXML private RadioButton rbPropia, rbPagaPlazos, rbAlquilada, rbPrestada, rbPrecario;
     @FXML private RadioButton rbBuena, rbRegular, rbMala, rbNoAplica;
-
+    @FXML private TextArea txt_Direccion;
     @FXML private ToggleGroup tipoGroup, tenenciaGroup, condicionGroup;
 
     private ViviendaDAO viviendaDAO;
@@ -53,6 +53,7 @@ public class Paso2Controller implements Initializable {
         Vivienda vivienda = new Vivienda();
         vivienda.setRegistro(registro);
         vivienda.setTipo(getTextoToggle(tipoGroup));
+        vivienda.setDireccion(txt_Direccion.getText().trim());
         vivienda.setTenencia(getTextoToggle(tenenciaGroup));
         vivienda.setCondicion(getTextoToggle(condicionGroup));
         viviendaDAO.guardar(vivienda);

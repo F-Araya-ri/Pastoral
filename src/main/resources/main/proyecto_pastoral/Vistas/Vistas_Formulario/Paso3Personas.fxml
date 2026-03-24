@@ -86,6 +86,14 @@
                              prefWidth="80"
                              promptText="Años" />
                </VBox>
+
+               <VBox spacing="4" prefWidth="200">
+                  <Label styleClass="field-label" text="Numero de Telefono" />
+                  <TextField fx:id="txtTelfono"
+                             styleClass="text-field"
+                             prefWidth="80"
+                             promptText="Numero de Telefono" />
+               </VBox>
             </HBox>
 
 
@@ -150,7 +158,6 @@
             </HBox>
          </VBox>
 
-         <!-- ══ TitledPane: Ingreso familiar ══════════════════════ -->
          <TitledPane collapsible="false"
                      styleClass="titled-pane"
                      text="💼  Ingreso familiar">

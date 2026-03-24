@@ -5,7 +5,7 @@
 <VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;
                            -fx-border-radius: 8; -fx-background-radius: 8;"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso2Controller">
+      fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso2Controller" stylesheets="@../../../../formulario-pastoral.css">
 
     <Label text="Datos de la vivienda"
            style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
@@ -52,6 +52,10 @@
             <RadioButton text="Mala"      toggleGroup="$condicionGroup"/>
             <RadioButton text="No aplica" toggleGroup="$condicionGroup"/>
         </HBox>
+    </VBox>
+    <VBox prefHeight="200.0" prefWidth="100.0">
+        <Label style="-fx-font-weight: bold;" text="Direccion"/>
+        <TextArea fx:id="txt_Direccion" prefHeight="200.0" prefWidth="200.0"/>
     </VBox>
 
 </VBox>
