@@ -137,9 +137,9 @@ public class FichaCompletaController implements Initializable {
                 (persona.getNombre()          != null ? persona.getNombre()          : "");
 
         String sexo     = persona.getSexo() != null ? persona.getSexo() : "---";
-        String jefatura = persona.isJefatura() ? "Sí" : "No";
+        String jefatura = persona.isJefatura();
         // ✅ FIX: getter correcto es getnumeroIdentificacion() (n minúscula en el modelo)
-        String doc      = persona.getnumeroIdentificacion() != null ? persona.getnumeroIdentificacion() : "---";
+        String doc = persona.getNumeroIdentificacion() != null ? persona.getNumeroIdentificacion() : "---";
 
         switch (letra) {
             case 'A':

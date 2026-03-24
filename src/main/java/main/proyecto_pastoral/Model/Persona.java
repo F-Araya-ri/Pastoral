@@ -22,6 +22,12 @@ public class Persona {
     @Column(name = "Nombre", nullable = false, length = 150)
     private String nombre;
 
+    @Column(name = "PrimerApellido", nullable = false, length = 150)
+    private String PrimerApellido;
+
+    @Column(name = "SegundoApellido", nullable = false, length = 150)
+    private String SegundoApellido;
+
     @Column(name = "Sexo", length = 20)
     private String sexo;
 
@@ -59,12 +65,14 @@ public class Persona {
     public Persona() {}
 
     public Persona(String tipoDocumento, String numeroIdentificacion,
-                   String nombre,String sexo, String jefatura, String relacion, int edad,
+                   String nombre,String primerApellido,String segundoApellido,String sexo, String jefatura, String relacion, int edad,
                    String pais, String migracion, String educacion,
                    String salud, String seguro, Registro registro) {
         this.tipoDocumento = tipoDocumento;
         this.numeroIdentificacion = numeroIdentificacion;
         this.nombre = nombre;
+        this.PrimerApellido = primerApellido;
+        this.SegundoApellido =segundoApellido;
         this.sexo = sexo;
         this.jefatura = jefatura;
         this.relacion = relacion;
@@ -121,4 +129,24 @@ public class Persona {
 
     public List<IngresoFamiliar> getIngresos() { return ingresos; }
     public void setIngresos(List<IngresoFamiliar> ingresos) { this.ingresos = ingresos; }
+
+    public String getSegundoApellido() {
+        return SegundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        SegundoApellido = segundoApellido;
+    }
+
+    public String getPrimerApellido() {
+        return PrimerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        PrimerApellido = primerApellido;
+    }
+    public String getNombreCompleto(){
+        return nombre + " " + PrimerApellido + " " + SegundoApellido;
+    }
+
 }

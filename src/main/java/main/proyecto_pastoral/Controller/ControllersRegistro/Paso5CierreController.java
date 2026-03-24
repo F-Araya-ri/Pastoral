@@ -11,17 +11,21 @@ import java.util.ResourceBundle;
 
 public class Paso5CierreController implements Initializable {
 
-    @FXML private Label      lblResumenRegistro;
-    @FXML private Label      lblResumenVivienda;
-    @FXML private Label      lblResumenPersonas;
-    @FXML private Label      lblResumenAsistencias;
-    @FXML private DatePicker fechaConclusion;
+    @FXML
+    private Label lblResumenRegistro;
+    @FXML
+    private Label lblResumenVivienda;
+    @FXML
+    private Label lblResumenPersonas;
+    @FXML
+    private Label lblResumenAsistencias;
+
 
     private Paso1Controller paso1;
     private Paso2Controller paso2;
     private Paso3Controller paso3;
     private Paso4Controller paso4;
-    private RegistroDAO     registroDAO;
+    private RegistroDAO registroDAO;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -29,7 +33,7 @@ public class Paso5CierreController implements Initializable {
     }
 
     public void setControllers(Paso1Controller p1, Paso2Controller p2,
-                                Paso3Controller p3, Paso4Controller p4) {
+                               Paso3Controller p3, Paso4Controller p4) {
         this.paso1 = p1;
         this.paso2 = p2;
         this.paso3 = p3;
@@ -39,16 +43,16 @@ public class Paso5CierreController implements Initializable {
     public void cargarResumen() {
         if (paso1 != null) {
             lblResumenRegistro.setText(
-                "Parroquia: " + paso1.getParroquiaSeleccionada().getNombreParroquia() +
-                " | Sector: " + paso1.getSectorSeleccionado().getNombreSector() +
-                " | Entrevistador: " + paso1.getEntrevistadorSeleccionado().getNombreCompleto() +
-                " | Fecha inicio: " + paso1.getFechaInicio());
+                    "Parroquia: " + paso1.getParroquiaSeleccionada().getNombreParroquia() +
+                            " | Sector: " + paso1.getSectorSeleccionado().getNombreSector() +
+                            " | Entrevistador: " + paso1.getEntrevistadorSeleccionado().getNombreCompleto() +
+                            " | Fecha inicio: " + paso1.getFechaInicio());
         }
         if (paso2 != null) {
             lblResumenVivienda.setText(
-                "Vivienda: " + paso2.getTipo() +
-                " | Tenencia: " + paso2.getTenencia() +
-                " | Condición: " + paso2.getCondicion());
+                    "Vivienda: " + paso2.getTipo() +
+                            " | Tenencia: " + paso2.getTenencia() +
+                            " | Condición: " + paso2.getCondicion());
         }
         if (paso3 != null) {
             lblResumenPersonas.setText("Personas registradas: " + paso3.getCantidadPersonas());
@@ -61,15 +65,17 @@ public class Paso5CierreController implements Initializable {
     @FXML
     private void guardarFicha() {
         try {
-            // Actualizar fecha de conclusión en el registro
-            if (paso1 != null && fechaConclusion.getValue() != null) {
+            if (paso1 != null) {
                 var registro = paso1.getRegistroGuardado();
-                if (registro != null) {
-                    registro.setFechaConclusion(fechaConclusion.getValue());
-                    registroDAO.actualizar(registro);
-                }
             }
-            mostrarAlerta("Ficha guardada", "La ficha de registro fue completada exitosamente.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ficha guardada");
+            alert.setHeaderText(null);
+            alert.setContentText("La ficha de registro fue completada exitosamente.");
+            alert.showAndWait();
+
+            javafx.stage.Stage stage = (javafx.stage.Stage) lblResumenRegistro.getScene().getWindow();
+            stage.close();
         } catch (Exception e) {
             mostrarAlerta("Error", "Error al finalizar: " + e.getMessage());
             e.printStackTrace();

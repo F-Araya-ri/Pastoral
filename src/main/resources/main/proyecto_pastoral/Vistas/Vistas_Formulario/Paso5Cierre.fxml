@@ -19,13 +19,6 @@
         <Label fx:id="lblResumenAsistencias"  text=""/>
     </VBox>
 
-    <HBox spacing="24">
-        <VBox spacing="8" HBox.hgrow="ALWAYS">
-            <Label text="Fecha prevista de conclusión" style="-fx-font-weight: bold;"/>
-            <DatePicker fx:id="fechaConclusion" promptText="DD/MM/AAAA" maxWidth="Infinity"/>
-        </VBox>
-    </HBox>
-
     <Button text="Guardar ficha completa" onAction="#guardarFicha"
             maxWidth="Infinity"
             style="-fx-background-color: #27ae60; -fx-text-fill: white;

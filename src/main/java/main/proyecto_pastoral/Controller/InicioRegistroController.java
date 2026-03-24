@@ -468,7 +468,7 @@ public class InicioRegistroController implements Initializable {
 
     @FXML
     private void abrirRegistroForms() throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Registro.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Wizard.fxml"));
         Scene registroScene = new Scene(loader.load(), 640, 500);
 
         Stage stage = new Stage();

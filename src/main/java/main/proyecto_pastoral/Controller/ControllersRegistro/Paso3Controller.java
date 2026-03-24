@@ -1,5 +1,6 @@
 package main.proyecto_pastoral.Controller.ControllersRegistro;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,7 +21,7 @@ import java.util.function.Consumer;
 
 public class Paso3Controller implements Initializable {
 
-    @FXML private TextField txtNombre, txtDocumento, txtEdad, txtPais;
+    @FXML private TextField txtNombre,txtprimerApellido,txtsegundoApellido, txtDocumento, txtEdad, txtPais;
     @FXML private TextField txtOcupacion, txtIngreso;
     @FXML private ComboBox<String> cmbTipoDoc,cmbSexo,cmbRelacion,cmbMigracion,cmbEducacion,cmbSalud,cmbSeguro;
     @FXML private CheckBox chkJefatura, chkTrabaja;
@@ -46,7 +47,9 @@ public class Paso3Controller implements Initializable {
         cmbEducacion.setItems(FXCollections.observableArrayList("Educación Preescolar","Educación General Básica","Educación Diversificada","Educación Superior"));
         cmbSeguro.setItems(FXCollections.observableArrayList("Asegurado","No asegurado","En trámite/Proceso"));
         cmbSalud.setItems(FXCollections.observableArrayList("Excelente","Bueno","Regular","Malo/Delicado"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colNombre.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNombreCompleto())
+        );
         colDocumento.setCellValueFactory(new PropertyValueFactory<>("numeroIdentificacion"));
         colSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
         colEdad.setCellValueFactory(new PropertyValueFactory<>("edad"));
@@ -63,10 +66,12 @@ public class Paso3Controller implements Initializable {
         Persona persona = new Persona();
         persona.setRegistro(registro);
         persona.setNombre(txtNombre.getText().trim());
+        persona.setPrimerApellido(txtprimerApellido.getText().trim());
+        persona.setSegundoApellido(txtsegundoApellido.getText().trim());
         persona.setTipoDocumento(cmbTipoDoc.getValue());
         persona.setNumeroIdentificacion(txtDocumento.getText().trim());
         persona.setSexo(cmbSexo.getValue());
-        if (!chkJefatura.isSelected()){
+        if (chkJefatura.isSelected()){
             persona.setJefatura("SI");
         }else{
             persona.setJefatura("NO");
@@ -85,7 +90,7 @@ public class Paso3Controller implements Initializable {
         ingreso.setPersona(persona);
         ingreso.setOcupacion(txtOcupacion.getText().trim());
 
-        if (!chkTrabaja.isSelected()){
+        if (chkTrabaja.isSelected()){
             ingreso.setTrabaja("SI");
         }else{
             ingreso.setTrabaja("NO");
@@ -100,8 +105,8 @@ public class Paso3Controller implements Initializable {
     }
 
     private void limpiarFormularioPersona() {
-        txtNombre.clear(); txtDocumento.clear(); txtEdad.clear();
-        txtPais.clear();  txtOcupacion.clear();txtIngreso.clear();
+        txtNombre.clear(); txtprimerApellido.clear();txtDocumento.clear(); txtEdad.clear();
+        txtPais.clear();  txtOcupacion.clear();txtIngreso.clear(); txtsegundoApellido.clear();
         chkJefatura.setSelected(false);chkTrabaja.setSelected(false);
         cmbTipoDoc.setValue(null);cmbSexo.setValue(null); cmbRelacion.setValue(null);
         cmbMigracion.setValue(null); cmbSalud.setValue(null); cmbEducacion.setValue(null);
