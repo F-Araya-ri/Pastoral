@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="620" prefWidth="700" style="-fx-background-color: #F2F4EE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.InicioRegistroController">
+<AnchorPane prefHeight="620" prefWidth="700" style="-fx-background-color: #F2F4EE;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.InicioRegistroController">
 
-    <VBox spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <VBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
         <!-- CABECERA -->
         <VBox alignment="CENTER" spacing="2" style="-fx-background-color: #3D4A20;                      -fx-padding: 22 32 18 32;">
@@ -24,17 +31,13 @@
         <!-- PANEL DE CREACIÓN -->
         <VBox spacing="14" style="-fx-background-color: #EAEDE0;                      -fx-padding: 18 28 18 28;                      -fx-border-color: #C8D099;                      -fx-border-width: 0 0 1 0;">
 
-            <Label style="-fx-font-size: 12px; -fx-font-weight: bold;                           -fx-text-fill: #3D4A20;" text="Crear nuevo registro" />
+            <Label prefHeight="38.0" prefWidth="162.0" style="-fx-font-size: 12px; -fx-font-weight: bold;                           -fx-text-fill: #3D4A20;" text="Panel gestión y creación " />
 
             <HBox alignment="CENTER_LEFT" spacing="12">
                 <!-- Botón crear -->
-                <Button fx:id="btnRegistroForms" defaultButton="true" onAction="#abrirRegistroForms" prefHeight="36" style="-fx-background-color: #5D682D;
-                    -fx-text-fill: white;
-                    -fx-font-size: 12px;
-                    -fx-font-weight: bold;
-                    -fx-background-radius: 7;
-                    -fx-cursor: hand;
-                     -fx-padding: 0 18;" text="＋  Crear Registro" />
+                <Button fx:id="btnRegistroForms" defaultButton="true" onAction="#abrirRegistroForms" prefHeight="36" prefWidth="190.0" style="-fx-background-color: #5D682D; fx-text-fill: white;  -fx-font-size: 12px;                     -fx-font-weight: bold;                     -fx-background-radius: 7;                     -fx-cursor: hand;                      -fx-padding: 0 18;" text="＋  Nuevo Registro" />
+            <Button fx:id="btnRegistroAdmin" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#abrirRegistroForms" prefHeight="36" prefWidth="198.0" style="-fx-background-color: #5D682D; -fx-text-fill: white;                     -fx-font-size: 12px;                     -fx-font-weight: bold;                     -fx-background-radius: 7;                     -fx-cursor: hand;                      -fx-padding: 0 18;" text="Nuevo Administrador" />
+            <Button fx:id="btnRegistroParroquia" defaultButton="true" layoutX="10.0" layoutY="10.0" onAction="#abrirRegistroForms" prefHeight="36" prefWidth="211.0" style="-fx-background-color: #5D682D;  -fx-text-fill: white;                     -fx-font-size: 12px;                     -fx-font-weight: bold;                     -fx-background-radius: 7;                     -fx-cursor: hand;                      -fx-padding: 0 18;" text="Nuevo Parroquia" />
             </HBox>
 
             <!-- Mensaje de validación -->
@@ -42,24 +45,24 @@
         </VBox>
 
         <!-- PANEL DE FILTROS DE BÚSQUEDA -->
-        <VBox style="-fx-background-color: #EAEDE0; -fx-padding: 14 28; -fx-border-color: #C8D099; -fx-border-width: 0 0 1 0;" spacing="10">
+        <VBox spacing="10" style="-fx-background-color: #EAEDE0; -fx-padding: 14 28; -fx-border-color: #C8D099; -fx-border-width: 0 0 1 0;">
             <Label style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="BUSCAR Y FILTRAR REGISTROS" />
-            <HBox spacing="15" alignment="CENTER_LEFT">
-                <VBox spacing="3" minWidth="120">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <VBox minWidth="120" spacing="3">
                     <Label style="-fx-font-size: 10px; -fx-text-fill: #5D6A40;" text="ID Registro" />
                     <TextField fx:id="txtFiltroIdRegistro" promptText="Ej: 001" style="-fx-font-size: 11px; -fx-padding: 5 8; -fx-border-radius: 5; -fx-border-color: #B0BE82;" />
                 </VBox>
-                <VBox spacing="3" minWidth="150" HBox.hgrow="ALWAYS">
+                <VBox minWidth="150" spacing="3" HBox.hgrow="ALWAYS">
                     <Label style="-fx-font-size: 10px; -fx-text-fill: #5D6A40;" text="Parroquia" />
                     <ComboBox fx:id="cbFiltroParroquia" maxWidth="Infinity" style="-fx-font-size: 11px; -fx-border-radius: 5; -fx-border-color: #B0BE82;" />
                 </VBox>
-                <VBox spacing="3" minWidth="150" HBox.hgrow="ALWAYS">
+                <VBox minWidth="150" spacing="3" HBox.hgrow="ALWAYS">
                     <Label style="-fx-font-size: 10px; -fx-text-fill: #5D6A40;" text="Entrevistador" />
                     <ComboBox fx:id="cbFiltroEntrevistador" maxWidth="Infinity" style="-fx-font-size: 11px; -fx-border-radius: 5; -fx-border-color: #B0BE82;" />
                 </VBox>
                 <VBox spacing="4">
                     <Label style="-fx-font-size: 10px;" text=" " />
-                    <Button fx:id="btnBuscar" text="🔍 Buscar" style="-fx-padding: 6 20; -fx-font-size: 11px; -fx-background-color: #5D682D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" onAction="#buscarRegistro" />
+                    <Button fx:id="btnBuscar" onAction="#buscarRegistro" style="-fx-padding: 6 20; -fx-font-size: 11px; -fx-background-color: #5D682D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="🔍 Buscar" />
                 </VBox>
             </HBox>
         </VBox>
