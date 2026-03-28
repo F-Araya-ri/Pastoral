@@ -23,18 +23,12 @@ import java.util.ResourceBundle;
 
 public class ParroquiaSectorController implements Initializable {
 
-
-    @FXML
-    private Label lblMensaje;
-
-    @FXML
-    private TextField txtNombreParroquia;
-    @FXML
-    private TableView<Parroquia> tablaParroquias;
-    @FXML
-    private TableColumn<Parroquia, Integer> colIdParroquia;
-    @FXML
-    private TableColumn<Parroquia, String> colNombreParroquia;
+    @FXML private Button btnRegistroForms;
+    @FXML private Label lblMensaje;
+    @FXML private TextField txtNombreParroquia;
+    @FXML private TableView<Parroquia> tablaParroquias;
+    @FXML private TableColumn<Parroquia, Integer> colIdParroquia;
+    @FXML private TableColumn<Parroquia, String> colNombreParroquia;
 
 
     @FXML
@@ -188,27 +182,10 @@ public class ParroquiaSectorController implements Initializable {
     // CREANDO BOTON PARA ENTRAR AL INICIOREGISTRO y CREAR USUARIO CREADO POR FABIANA
     //------------------------------------------------------------------------
 
-    @FXML
-    private void abrirEntrevistadorForms() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                App.class.getResource("Vistas/EntrevistadorForms.fxml")
-        );
-        Scene scene = new Scene(loader.load(), 500, 480);
-        Stage stage = new Stage();
-        stage.setTitle("Entrevistadores");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @FXML
     private void abrirInicioRegistro() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                App.class.getResource("Vistas/Inicioregistroforms.fxml")
-        );
-        Scene scene = new Scene(loader.load(), 400, 300);
-        Stage stage = new Stage();
-        stage.setTitle("Inicio de Registro");
-        stage.setScene(scene);
-        stage.show();
+        javafx.stage.Stage stage = (javafx.stage.Stage) btnRegistroForms .getScene().getWindow();
+        stage.close();
     }
 }

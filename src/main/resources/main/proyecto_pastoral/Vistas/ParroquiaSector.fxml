@@ -1,100 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ParroquiaSectorController">
-   <content>
-      <VBox spacing="20" style="-fx-padding: 24;" stylesheets="@../../../parroquiaSector.css">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F2F4EE;" stylesheets="@../../../Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ParroquiaSectorController">
 
-          <!-- Título -->
-          <Label styleClass="titulo-principal" text="Gestión de Parroquias y Sectores" />
+    <VBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
-          <!-- Mensaje éxito / error -->
-          <Label fx:id="lblMensaje" text="" wrapText="true" />
-
-          <!-- ═══════════════════════════════════════════ -->
-          <!--              SECCIÓN PARROQUIA              -->
-          <!-- ═══════════════════════════════════════════ -->
-          <TitledPane collapsible="false" text="Parroquia">
-              <VBox spacing="14">
-
-                  <HBox alignment="CENTER_LEFT" spacing="12">
-                      <Label styleClass="label-campo" text="Nombre de la parroquia:" />
-                      <TextField fx:id="txtNombreParroquia" promptText="Ingrese el nombre" />
-                  </HBox>
-
-                  <HBox spacing="10">
-                      <Button onAction="#guardarParroquia" styleClass="btn-guardar" text="Guardar parroquia" />
-                      <Button onAction="#limpiarParroquia" styleClass="btn-limpiar" text="Limpiar" />
-                  </HBox>
-
-                  <TableView fx:id="tablaParroquias" prefHeight="180">
-                      <columns>
-                          <TableColumn fx:id="colIdParroquia" prefWidth="70" text="ID" />
-                          <TableColumn fx:id="colNombreParroquia" minWidth="0.0" prefWidth="419.99999237060547" text="Nombre" />
-                      </columns>
-                      <placeholder>
-                     <Label text="No hay parroquias registradas" />
-                  </placeholder>
-                  </TableView>
-
-              </VBox>
-          </TitledPane>
-
-          <!-- ═══════════════════════════════════════════ -->
-          <!--               SECCIÓN SECTOR               -->
-          <!-- ═══════════════════════════════════════════ -->
-          <TitledPane collapsible="false" text="Sector">
-              <VBox spacing="14">
-
-                  <HBox alignment="CENTER_LEFT" spacing="12">
-                      <Label styleClass="label-campo" text="Parroquia:" />
-                      <ComboBox fx:id="cmbParroquia" promptText="Seleccione una parroquia" />
-                  </HBox>
-
-                  <HBox alignment="CENTER_LEFT" spacing="12">
-                      <Label styleClass="label-campo" text="Nombre del sector:" />
-                      <TextField fx:id="txtNombreSector" promptText="Ingrese el nombre" />
-                  </HBox>
-
-                  <HBox spacing="10">
-                      <Button onAction="#guardarSector" styleClass="btn-guardar" text="Guardar sector" />
-                      <Button onAction="#limpiarSector" styleClass="btn-limpiar" text="Limpiar" />
-                  </HBox>
-
-                  <TableView fx:id="tablaSectores" prefHeight="180">
-                      <columns>
-                          <TableColumn fx:id="colIdSector" prefWidth="70" text="ID" />
-                          <TableColumn fx:id="colNombreSector" prefWidth="220" text="Nombre del sector" />
-                          <TableColumn fx:id="colParroquiaSector" prefWidth="202.00006103515625" text="Parroquia" />
-                      </columns>
-                      <placeholder>
-                     <Label text="No hay sectores registrados" />
-                  </placeholder>
-                  </TableView>
-
-              </VBox>
-          </TitledPane>
- <Button fx:id="btnEntrevistadorForms"
-                  text="Ir a Entrevistadores"
-                  styleClass="btn-ir-entrevistadores"
-                  onAction="#abrirEntrevistadorForms" />
-
-<Button fx:id="btnRegistroForms"
-        text="Ir a Registro"
-        styleClass="btn-ir-inicio-registro"
-        onAction="#abrirInicioRegistro" />
-
-
+        <VBox spacing="5" style="-fx-background-color: #3D4A20; -fx-padding: 20 40;">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label style="-fx-font-size: 24px; -fx-text-fill: #C8D4A0;" text="⛪" />
+                <VBox>
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F5F0E8;" text="Configuración Parroquias" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #A8B880;" text="Administración de Parroquias y sus respectivos Sectores" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox spacing="10">
+                    <Button fx:id="btnRegistroForms" onAction="#abrirInicioRegistro" style="-fx-background-color: #5D682D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="🏠 Volver al Inicio" />
+                </HBox>
+            </HBox>
         </VBox>
-   </content>
-</ScrollPane>
+
+        <GridPane hgap="25" style="-fx-padding: 25 40;" VBox.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="45" />
+                <ColumnConstraints percentWidth="55" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="ALWAYS" />
+            </rowConstraints>
+
+            <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);" GridPane.columnIndex="0">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="1. Parroquias" />
+                <Separator />
+
+                <VBox spacing="8">
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Nombre de la Parroquia" />
+                    <TextField fx:id="txtNombreParroquia" prefHeight="35" promptText="Ej: Nuestra Señora del Carmen" styleClass="input-field" />
+                </VBox>
+
+                <HBox spacing="10">
+                    <Button maxWidth="Infinity" onAction="#guardarParroquia" prefHeight="35" style="-fx-background-color: #5D682D; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" text="Guardar" HBox.hgrow="ALWAYS" />
+                    <Button onAction="#limpiarParroquia" prefHeight="35" style="-fx-background-color: #F0F2F5; -fx-text-fill: #666; -fx-background-radius: 6;" text="Limpiar" />
+                </HBox>
+
+                <TableView fx:id="tablaParroquias" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colIdParroquia" prefWidth="50" text="ID" />
+                        <TableColumn fx:id="colNombreParroquia" prefWidth="280" text="Nombre Parroquia" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);" GridPane.columnIndex="1">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="2. Sectores por Parroquia" />
+                <Separator />
+
+                <HBox spacing="15">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Seleccionar Parroquia" />
+                        <ComboBox fx:id="cmbParroquia" maxWidth="Infinity" prefHeight="54.0" prefWidth="267.0" promptText="Seleccione una Parroquia" styleClass="input-field" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Nombre del Sector" />
+                        <TextField fx:id="txtNombreSector" prefHeight="35" promptText="Ej: Sector Norte" styleClass="input-field" />
+                    </VBox>
+                </HBox>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button onAction="#limpiarSector" prefHeight="35" style="-fx-background-color: #F0F2F5; -fx-text-fill: #666; -fx-background-radius: 6;" text="Limpiar" />
+                    <Button onAction="#guardarSector" prefHeight="35" prefWidth="150" style="-fx-background-color: #5D682D; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" text="Guardar Sector" />
+                </HBox>
+
+                <TableView fx:id="tablaSectores" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colIdSector" prefWidth="50" text="ID" />
+                        <TableColumn fx:id="colParroquiaSector" prefWidth="180" text="Parroquia" />
+                        <TableColumn fx:id="colNombreSector" prefWidth="180" text="Nombre del Sector" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </GridPane>
+
+        <HBox style="-fx-background-color: #E2E4DE; -fx-padding: 5 40;" />
+    </VBox>
+</AnchorPane>
