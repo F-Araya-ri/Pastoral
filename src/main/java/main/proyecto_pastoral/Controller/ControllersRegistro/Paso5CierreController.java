@@ -45,7 +45,7 @@ public class Paso5CierreController implements Initializable {
             lblResumenRegistro.setText(
                     "Parroquia: " + paso1.getParroquiaSeleccionada().getNombreParroquia() +
                             " | Sector: " + paso1.getSectorSeleccionado().getNombreSector() +
-                            " | Entrevistador: " + paso1.getEntrevistadorSeleccionado().getNombreCompleto() +
+                            " | Entrevistador: " + paso1.getEntrevistadorSeleccionado().getNombre() +
                             " | Fecha inicio: " + paso1.getFechaInicio());
         }
         if (paso2 != null) {

@@ -44,6 +44,8 @@ import java.util.ResourceBundle;
 public class InicioRegistroController implements Initializable {
 
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    @FXML public Button btnRegistroAdmin;
+    @FXML public Button btnRegistroParroquia;
 
     // ── ELEMENTOS DE LA PANTALLA ──────────────────────────────────────
     @FXML
@@ -485,14 +487,28 @@ public class InicioRegistroController implements Initializable {
     }
 
     @FXML
-    private void abrirRegistroForms() throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Wizard.fxml"));
-        Scene registroScene = new Scene(loader.load(), 900, 650);
+    private void CargarVistas(String nombreVista, String infVista) throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/"+nombreVista));
+        Scene registroScene = new Scene(loader.load(), 1000, 700);
 
         Stage stage = new Stage();
-        stage.setTitle("Registro Pastoral");
+        stage.setTitle(infVista);
         stage.setScene(registroScene);
         stage.show();
 
     }
+
+    @FXML
+    public void mostrarRegistroForms() throws IOException {
+        CargarVistas("Wizard.fxml","Formulario Registro");
+    }
+    @FXML
+    public void mostrarRegistroAdmin() throws IOException {
+        CargarVistas("Entrevistadorforms.fxml","Nuevo Admistrador");
+    }
+    @FXML
+    public void mostrarRegistroParroquia() throws IOException {
+        CargarVistas("ParroquiaSector.fxml","Nueva Parroquia");
+    }
+
 }

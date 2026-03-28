@@ -1,0 +1,105 @@
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #DDE3EA;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+
+.table-view .column-header {
+    -fx-background-color: #F8FAF5;
+    -fx-border-color: transparent transparent #DDE3EA transparent;
+    -fx-padding: 8;
+}
+
+
+.table-view .column-header .label {
+    -fx-text-fill: #5D682D;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+
+.table-row-cell:even {
+    -fx-background-color: #FFFFFF;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #FAFAF8;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #E8EDD8;
+    -fx-text-fill: #3D4A20;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #3D4A20;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #8A9470;
+    -fx-font-size: 13px;
+}
+
+.input-field {
+    -fx-background-color: white;
+    -fx-border-color: #DDE3EA;
+    -fx-border-radius: 5;
+    -fx-padding: 5 10;
+}
+
+.input-field:focused {
+    -fx-border-color: #5D682D;
+    -fx-border-width: 1.5;
+}
+
+.btn-guardar {
+    -fx-background-color: #5D682D;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-guardar:hover {
+    -fx-background-color: #4D5726;
+}
+
+
+.btn-limpiar {
+    -fx-background-color: #F0F2F5;
+    -fx-text-fill: #666;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-limpiar:hover {
+    -fx-background-color: #E2E6EA;
+}
+.btn-gestion {
+    -fx-background-color: #eaede0;
+    -fx-border-color: #3D4A20;
+    -fx-text-fill: #3D4A20;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 10px 15px;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER;
+}
+
+/* Efecto al pasar el mouse por encima */
+.btn-gestion:hover {
+    -fx-background-color: #EAE6DF;
+}
+
+/* Efecto al hacer clic */
+.btn-gestion:pressed {
+    -fx-background-color: #3D4A20;
+    -fx-text-fill: #FFFFFF;
+}

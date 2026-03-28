@@ -10,6 +10,7 @@ import main.proyecto_pastoral.Model.Entrevistador;
 import main.proyecto_pastoral.Util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,9 +18,14 @@ import java.util.ResourceBundle;
 
 public class EntrevistadorController implements Initializable {
 
+    @FXML private Button btnRegistroForms;
+    @FXML private Label lblTotal;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtTelefono;
     @FXML private TextField txtNombre;
     @FXML private Button  btnGuardar;
     @FXML private Button  btnCancelar;
+
     @FXML private Label   lblMensaje;
     @FXML private ListView<Entrevistador> listaEntrevistadores;
 
@@ -28,9 +34,9 @@ public class EntrevistadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         SessionFactory sf = HibernateUtil.getSessionFactory();
         entrevistadorDAO = new EntrevistadorDAO(sf);
+
 
         listaEntrevistadores.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -49,26 +55,25 @@ public class EntrevistadorController implements Initializable {
     @FXML
     private void guardarEntrevistador() {
 
-        // Obtenemos el texto y eliminamos espacios al inicio y al final
-        String nombre = txtNombre.getText().trim();
 
-        // ── VALIDACIONES ──────────────────────────────────────────────────
+       String Nombre = txtNombre.getText().trim();
+        String Telefono = txtTelefono.getText().trim();
+        String Email = txtEmail.getText().trim();
+        String Estado = "Activo" ;
 
-        if (nombre.isEmpty()) {
+        if (Nombre.isEmpty()) {
             mostrarMensaje("El nombre no puede estar vacío.", true);
             txtNombre.requestFocus();
             return;
         }
 
-        if (nombre.length() < 3) {
+        if (Nombre.length() < 3) {
             mostrarMensaje("El nombre debe tener al menos 3 caracteres.", true);
             txtNombre.requestFocus();
             return;
         }
 
-        // Verificamos que no exista ya un entrevistador con ese nombre
-        // buscarPorNombre() busca coincidencias exactas (ignorando mayúsculas)
-        boolean yaExiste = entrevistadorDAO.buscarPorNombre(nombre).isPresent();
+        boolean yaExiste = entrevistadorDAO.buscarPorNombre(Nombre).isPresent();
         if (yaExiste) {
             mostrarMensaje("⚠ Ya existe un entrevistador con ese nombre.", true);
             txtNombre.requestFocus();
@@ -79,14 +84,17 @@ public class EntrevistadorController implements Initializable {
 
         // Creamos el objeto con el nombre ingresado
         // El ID lo asigna automáticamente la base de datos
-        Entrevistador nuevo = new Entrevistador();
-        nuevo.setNombre(nombre);
+        Entrevistador entrevistador = new Entrevistador();
+        entrevistador.setNombre(Nombre);
+        entrevistador.setTelefono(Telefono);
+        entrevistador.setEmail(Email);
+        entrevistador.setEstadoAdmin(Estado);
 
         try {
-            entrevistadorDAO.guardar(nuevo);
+            entrevistadorDAO.guardar(entrevistador);
 
-            mostrarMensaje("✔ Entrevistador \"" + nombre + "\" guardado con ID #"
-                    + nuevo.getIdEntrevistador(), false);
+            mostrarMensaje("✔ Entrevistador \"" + Nombre + "\" guardado con ID #"
+                    + entrevistador.getIdEntrevistador(), false);
 
             limpiarFormulario();
 
@@ -109,6 +117,7 @@ public class EntrevistadorController implements Initializable {
             List<Entrevistador> lista = entrevistadorDAO.listarTodos();
             // setItems reemplaza todo el contenido del ListView con la nueva lista
             listaEntrevistadores.setItems(FXCollections.observableArrayList(lista));
+            lblTotal.setText(String.valueOf(lista.size()));
         } catch (Exception e) {
             mostrarMensaje("✘ Error al cargar la lista: " + e.getMessage(), true);
             e.printStackTrace();
@@ -122,6 +131,8 @@ public class EntrevistadorController implements Initializable {
     @FXML
     private void limpiarFormulario() {
         txtNombre.clear();
+        txtTelefono.clear();
+        txtEmail.clear();
         lblMensaje.setText("");
         txtNombre.requestFocus(); // Ponemos el cursor en el campo para escribir de nuevo
     }
@@ -137,5 +148,10 @@ public class EntrevistadorController implements Initializable {
                 ? "-fx-text-fill: #c0392b; -fx-font-weight: bold;"
                 : "-fx-text-fill: #27ae60; -fx-font-weight: bold;"
         );
+    }
+    @FXML
+    private void abrirInicioRegistro() throws IOException {
+        javafx.stage.Stage stage = (javafx.stage.Stage) btnRegistroForms .getScene().getWindow();
+        stage.close();
     }
 }
