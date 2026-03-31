@@ -501,7 +501,19 @@ public class InicioRegistroController implements Initializable {
 
     @FXML
     public void mostrarRegistroForms() throws IOException {
-        CargarVistas("Wizard.fxml","Formulario Registro");
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Wizard.fxml"));
+        Scene registroScene = new Scene(loader.load(), 1000, 700);
+
+        WizardController controller = loader.getController();
+        controller.setOnRegistroCreado(registro -> {
+            agregarFilaRegistro(registro);
+            actualizarContador();
+        });
+
+        Stage stage = new Stage();
+        stage.setTitle("Formulario Registro");
+        stage.setScene(registroScene);
+        stage.show();
     }
     @FXML
     public void mostrarRegistroAdmin() throws IOException {
