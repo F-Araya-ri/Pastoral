@@ -18,7 +18,7 @@
 <ScrollPane fitToWidth="true"
             styleClass="scroll-pane"
             stylesheets="@../../../../formulario-pastoral.css"
-            xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns="http://javafx.com/javafx/21.0.5"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso3Controller">
    <content>

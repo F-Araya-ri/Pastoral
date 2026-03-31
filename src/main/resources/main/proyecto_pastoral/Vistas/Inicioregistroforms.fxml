@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="620" prefWidth="700" style="-fx-background-color: #F2F4EE;" stylesheets="@../../../Style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.InicioRegistroController">
+<AnchorPane prefHeight="620" prefWidth="700" style="-fx-background-color: #F2F4EE;" stylesheets="@../../../Style.css" xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.InicioRegistroController">
 
     <VBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
@@ -37,6 +37,10 @@
                 <Button fx:id="btnRegistroAdmin" maxWidth="Infinity" onAction="#mostrarRegistroAdmin" styleClass="btn-gestion" text="Nuevo Administrador" HBox.hgrow="ALWAYS" />
 
                 <Button fx:id="btnRegistroParroquia" maxWidth="Infinity" onAction="#mostrarRegistroParroquia" styleClass="btn-gestion" text="Nueva Parroquia" HBox.hgrow="ALWAYS" />
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Button fx:id="btnAdendumExpediente" maxWidth="Infinity" onAction="#mostrarAdendumExpediente" styleClass="btn-gestion" text="Adendum Expediente" HBox.hgrow="ALWAYS" />
             </HBox>
 
             <Label fx:id="lblMensaje" maxWidth="1.7976931348623157E308" minHeight="16" style="-fx-font-size: 11px;" text="" wrapText="true" />

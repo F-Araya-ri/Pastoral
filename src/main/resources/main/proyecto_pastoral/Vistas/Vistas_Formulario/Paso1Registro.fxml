@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;-fx-border-radius: 8; -fx-background-radius: 8;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso1Controller" stylesheets="@../../../../formulario-pastoral.css">
+<VBox spacing="16" style="-fx-background-color: white; -fx-padding: 24;-fx-border-radius: 8; -fx-background-radius: 8;" xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.ControllersRegistro.Paso1Controller" stylesheets="@../../../../formulario-pastoral.css">
 
     <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Datos del registro" />
     <Separator />

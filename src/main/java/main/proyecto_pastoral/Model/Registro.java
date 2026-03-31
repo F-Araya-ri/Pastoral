@@ -41,6 +41,9 @@ public class Registro {
     @OneToMany(mappedBy = "registro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Asistencia> asistencias = new ArrayList<>();
 
+    @OneToOne(mappedBy = "registro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private AdendumAyuda adendumAyuda;
+
     public Registro() {
     }
 
@@ -120,5 +123,13 @@ public class Registro {
 
     public void setAsistencias(List<Asistencia> asistencias) {
         this.asistencias = asistencias;
+    }
+
+    public AdendumAyuda getAdendumAyuda() {
+        return adendumAyuda;
+    }
+
+    public void setAdendumAyuda(AdendumAyuda adendumAyuda) {
+        this.adendumAyuda = adendumAyuda;
     }
 }

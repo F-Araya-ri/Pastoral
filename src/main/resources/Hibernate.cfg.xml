@@ -23,5 +23,6 @@
         <mapping class="main.proyecto_pastoral.Model.Vivienda"/>
         <mapping class="main.proyecto_pastoral.Model.Asistencia"/>
         <mapping class="main.proyecto_pastoral.Model.IngresoFamiliar"/>
+        <mapping class="main.proyecto_pastoral.Model.AdendumAyuda"/>
     </session-factory>
 </hibernate-configuration>

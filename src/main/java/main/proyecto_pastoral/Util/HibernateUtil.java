@@ -20,6 +20,7 @@ public class HibernateUtil {
                     .addAnnotatedClass(Persona.class)
                     .addAnnotatedClass(IngresoFamiliar.class)
                     .addAnnotatedClass(Asistencia.class)
+                    .addAnnotatedClass(AdendumAyuda.class)
                     .buildSessionFactory();
         }
         return sessionFactory;

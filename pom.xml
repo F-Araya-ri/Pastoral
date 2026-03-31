@@ -73,10 +73,6 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>21</release>
-                    <compilerArgs>
-                        <arg>--add-exports=java.naming/javax.naming=ALL-UNNAMED</arg>
-                        <arg>--add-exports=java.naming/javax.naming.spi=ALL-UNNAMED</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>

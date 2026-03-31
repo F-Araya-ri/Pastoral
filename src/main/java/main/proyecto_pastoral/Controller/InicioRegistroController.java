@@ -46,6 +46,7 @@ public class InicioRegistroController implements Initializable {
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     @FXML public Button btnRegistroAdmin;
     @FXML public Button btnRegistroParroquia;
+    @FXML public Button btnAdendumExpediente;
 
     // ── ELEMENTOS DE LA PANTALLA ──────────────────────────────────────
     @FXML
@@ -509,6 +510,10 @@ public class InicioRegistroController implements Initializable {
     @FXML
     public void mostrarRegistroParroquia() throws IOException {
         CargarVistas("ParroquiaSector.fxml","Nueva Parroquia");
+    }
+    @FXML
+    public void mostrarAdendumExpediente() throws IOException {
+        CargarVistas("AdendumExpediente.fxml","Adendum al Expediente");
     }
 
 }

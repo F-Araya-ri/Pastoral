@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<BorderPane style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.WizardController">
+<BorderPane style="-fx-background-color: #f0f2f5;" xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.WizardController">
 
           <!-- ═══ BARRA DE PROGRESO SUPERIOR ═══ -->
     <top>
