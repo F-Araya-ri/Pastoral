@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700" prefWidth="920" style="-fx-background-color: #F2F4EE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.FichaCompletaController">
+<AnchorPane prefHeight="700" prefWidth="920" style="-fx-background-color: #F2F4EE;" xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.FichaCompletaController">
 
     <ScrollPane fitToWidth="true" style="-fx-background: #F2F4EE; -fx-background-color: #F2F4EE;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
