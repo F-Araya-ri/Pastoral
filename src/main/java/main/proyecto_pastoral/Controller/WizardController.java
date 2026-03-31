@@ -14,6 +14,7 @@ import main.proyecto_pastoral.Model.Registro;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class WizardController implements Initializable {
 
@@ -29,6 +30,7 @@ public class WizardController implements Initializable {
     private final int TOTAL_PASOS = 5;
 
     private Registro registroActual;
+    private Consumer<Registro> onRegistroCreado;
 
     private Paso1Controller paso1Controller;
     private Paso2Controller paso2Controller;
@@ -54,6 +56,10 @@ public class WizardController implements Initializable {
             if (registroActual == null) {
                 mostrarError("Error al guardar el registro.");
                 return;
+            }
+            if (onRegistroCreado != null) {
+                onRegistroCreado.accept(registroActual);
+                onRegistroCreado = null;
             }
         }
 
@@ -173,4 +179,8 @@ public class WizardController implements Initializable {
     private void limpiarMensaje() { lblMensaje.setText(""); }
 
     public Registro getRegistroActual() { return registroActual; }
+
+    public void setOnRegistroCreado(Consumer<Registro> onRegistroCreado) {
+        this.onRegistroCreado = onRegistroCreado;
+    }
 }
