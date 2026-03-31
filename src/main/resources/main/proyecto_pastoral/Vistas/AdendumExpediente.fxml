@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="720.0" prefWidth="950.0" style="-fx-background-color: #F2F4EE;" stylesheets="@../../../Style.css" xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.proyecto_pastoral.Controller.AdendumExpedienteController">
+    <VBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox spacing="5" style="-fx-background-color: #3D4A20; -fx-padding: 20 40;">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label style="-fx-font-size: 24px; -fx-text-fill: #C8D4A0;" text="+" />
+                <VBox>
+                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #F5F0E8;" text="Adendum de Ayudas" />
+                    <Label style="-fx-font-size: 11px; -fx-text-fill: #A8B880;" text="Registro complementario ligado a una ficha existente" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#cerrarVentana" style="-fx-background-color: #5D682D; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Cerrar" />
+            </HBox>
+        </VBox>
+
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <VBox spacing="18" style="-fx-padding: 24 40 24 40; -fx-background-color: #F2F4EE;">
+                <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                    <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Vincular al registro" />
+                    <Separator />
+                    <HBox alignment="CENTER_LEFT" spacing="14">
+                        <VBox spacing="6">
+                            <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Numero de registro" />
+                            <TextField fx:id="txtNumeroRegistro" prefWidth="180" promptText="Ej: 1024" styleClass="input-field" />
+                        </VBox>
+                        <Button onAction="#cargarRegistro" style="-fx-background-color: #5D682D; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 8 18;" text="Cargar registro" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #8A9470;" text="Primero cargue un registro existente para habilitar el autoguardado." />
+                    </HBox>
+                </VBox>
+
+                <VBox fx:id="contenedorFormulario" spacing="18">
+                    <VBox spacing="6" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Informacion del adendum" />
+                        <Separator />
+                        <HBox spacing="18">
+                            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Informacion adicional relevante" />
+                                <TextField fx:id="txtDescripcionAdicional" maxWidth="1.7976931348623157E308" promptText="Descripcion corta del adendum" styleClass="input-field" />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="14" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Pagos mensuales actuales" />
+                        <Separator />
+                        <HBox spacing="14">
+                            <Label prefWidth="180" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #5D6A40;" text="Servicio / gasto" />
+                            <Label prefWidth="160" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #5D6A40;" text="Monto actual" />
+                            <Label prefWidth="160" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #5D6A40;" text="Fecha" />
+                            <Label prefWidth="160" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #5D6A40;" text="Observacion" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <Label prefWidth="180" text="1. Electricidad" />
+                            <TextField fx:id="txtElectricidadMonto" prefWidth="160" promptText="Monto" styleClass="input-field" />
+                            <TextField fx:id="txtElectricidadFecha" prefWidth="160" promptText="Fecha" styleClass="input-field" />
+                            <TextField fx:id="txtElectricidadDetalle" prefWidth="160" promptText="Detalle" styleClass="input-field" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <Label prefWidth="180" text="2. Agua" />
+                            <TextField fx:id="txtAguaMonto" prefWidth="160" promptText="Monto" styleClass="input-field" />
+                            <TextField fx:id="txtAguaFecha" prefWidth="160" promptText="Fecha" styleClass="input-field" />
+                            <TextField fx:id="txtAguaDetalle" prefWidth="160" promptText="Detalle" styleClass="input-field" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <Label prefWidth="180" text="3. Telefono" />
+                            <TextField fx:id="txtTelefonoMonto" prefWidth="160" promptText="Monto" styleClass="input-field" />
+                            <TextField fx:id="txtTelefonoFecha" prefWidth="160" promptText="Fecha" styleClass="input-field" />
+                            <TextField fx:id="txtTelefonoDetalle" prefWidth="160" promptText="Detalle" styleClass="input-field" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <Label prefWidth="180" text="4. Internet" />
+                            <TextField fx:id="txtInternetMonto" prefWidth="160" promptText="Monto" styleClass="input-field" />
+                            <TextField fx:id="txtInternetFecha" prefWidth="160" promptText="Fecha" styleClass="input-field" />
+                            <TextField fx:id="txtInternetDetalle" prefWidth="160" promptText="Detalle" styleClass="input-field" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                            <Label prefWidth="180" text="5. Cable" />
+                            <TextField fx:id="txtCableMonto" prefWidth="160" promptText="Monto" styleClass="input-field" />
+                            <TextField fx:id="txtCableFecha" prefWidth="160" promptText="Fecha" styleClass="input-field" />
+                            <TextField fx:id="txtCableDetalle" prefWidth="160" promptText="Detalle" styleClass="input-field" />
+                        </HBox>
+                    </VBox>
+
+                    <HBox spacing="18">
+                        <VBox spacing="14" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Gasto de vivienda" />
+                            <Separator />
+                            <VBox spacing="10">
+                                <HBox alignment="CENTER_LEFT" spacing="12">
+                                    <Label prefWidth="180" text="Alquiler o prestamo" />
+                                    <TextField fx:id="txtAlquilerPrestamo" maxWidth="1.7976931348623157E308" promptText="Monto o detalle" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" spacing="12">
+                                    <Label prefWidth="180" text="Alimentacion" />
+                                    <TextField fx:id="txtAlimentacion" maxWidth="1.7976931348623157E308" promptText="Monto o detalle" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox spacing="14" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Gasto de salud" />
+                            <Separator />
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <Label prefWidth="180" text="Medicamento mensual" />
+                                <TextField fx:id="txtMedicamentoMensual" maxWidth="1.7976931348623157E308" promptText="Monto o detalle" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <VBox spacing="14" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Otros gastos y observaciones" />
+                        <Separator />
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <Label prefWidth="180" text="1. Otro gasto" />
+                            <TextField fx:id="txtOtroGastoUno" maxWidth="1.7976931348623157E308" promptText="Detalle" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+                            <Label prefWidth="180" text="2. Otro gasto" />
+                            <TextField fx:id="txtOtroGastoDos" maxWidth="1.7976931348623157E308" promptText="Detalle" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <VBox spacing="6">
+                            <Label style="-fx-font-size: 11px; -fx-font-weight: bold;" text="Otras observaciones determinadas al momento de la entrevista" />
+                            <TextArea fx:id="txtObservaciones" prefRowCount="8" promptText="Escriba aqui cualquier observacion relevante..." style="-fx-background-color: white; -fx-border-color: #DDE3EA; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8;" wrapText="true" />
+                        </VBox>
+                    </VBox>
+
+                    <VBox spacing="14" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 4);">
+                        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #3D4A20;" text="Recomendacion de ayuda" />
+                        <Separator />
+                        <VBox spacing="10">
+                            <fx:define>
+                                <ToggleGroup fx:id="grupoAyuda1" />
+                                <ToggleGroup fx:id="grupoAyuda2" />
+                                <ToggleGroup fx:id="grupoAyuda3" />
+                            </fx:define>
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <Label prefWidth="220" text="Primera recomendacion" />
+                                <RadioButton fx:id="rbRec1Si" text="Si" toggleGroup="$grupoAyuda1" />
+                                <RadioButton fx:id="rbRec1No" text="No" toggleGroup="$grupoAyuda1" />
+                                <TextField fx:id="txtFechaRec1" prefWidth="180" promptText="Fecha" styleClass="input-field" />
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <Label prefWidth="220" text="Segunda recomendacion" />
+                                <RadioButton fx:id="rbRec2Si" text="Si" toggleGroup="$grupoAyuda2" />
+                                <RadioButton fx:id="rbRec2No" text="No" toggleGroup="$grupoAyuda2" />
+                                <TextField fx:id="txtFechaRec2" prefWidth="180" promptText="Fecha" styleClass="input-field" />
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <Label prefWidth="220" text="Tercera recomendacion" />
+                                <RadioButton fx:id="rbRec3Si" text="Si" toggleGroup="$grupoAyuda3" />
+                                <RadioButton fx:id="rbRec3No" text="No" toggleGroup="$grupoAyuda3" />
+                                <TextField fx:id="txtFechaRec3" prefWidth="180" promptText="Fecha" styleClass="input-field" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="12" style="-fx-background-color: #E2E4DE; -fx-padding: 12 40;">
+            <Label fx:id="lblEstado" maxWidth="1.7976931348623157E308" style="-fx-font-size: 12px;" text="" wrapText="true" HBox.hgrow="ALWAYS" />
+            <Button onAction="#limpiarFormulario" style="-fx-background-color: #F0F2F5; -fx-text-fill: #666; -fx-background-radius: 6; -fx-cursor: hand;" text="Limpiar" />
+        </HBox>
+    </VBox>
+</AnchorPane>
