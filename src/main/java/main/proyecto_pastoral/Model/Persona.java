@@ -6,8 +6,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "Persona")
+@NamedQueries(value = {
+        @NamedQuery(name = "Persona.buscarConIngresosPorRegistro",query = "SELECT p FROM Persona p LEFT JOIN FETCH p.ingresos WHERE p.registro.numeroRegistro = :numero")})
 public class Persona {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Persona", nullable = false)

@@ -18,17 +18,13 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
     @Override
     public void guardar(Persona persona) {
         Transaction transaction = null;
-        Session session = null;
-        try {
-            session = sessionFactory.openSession();
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.persist(persona);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             throw new RuntimeException("Error al guardar persona", e);
-        } finally {
-            if (session != null) session.close();
         }
     }
 
@@ -80,7 +76,7 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
 
     public Optional<Persona> buscarJefeFamilia(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
+            return session.createNamedQuery(
                             "FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = 'SI'", Persona.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResultOptional();
@@ -89,8 +85,8 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
 
     public List<Persona> buscarConIngresosPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Persona p LEFT JOIN FETCH p.ingresos WHERE p.registro.numeroRegistro = :numero", Persona.class)
+            return session.createNamedQuery(
+                            "Persona.buscarConIngresosPorRegistro", Persona.class)
                     .setParameter("numero", numeroRegistro)
                     .list();
         }
