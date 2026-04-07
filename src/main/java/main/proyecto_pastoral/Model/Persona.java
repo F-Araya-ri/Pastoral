@@ -9,19 +9,14 @@ import java.util.List;
 @Table(name = "Persona")
 @NamedQueries(value = {
 
-        @NamedQuery(
-                name = "Persona.buscarConIngresosPorRegistro",
-                query = "SELECT p FROM Persona p LEFT JOIN FETCH p.ingresos WHERE p.registro.numeroRegistro = :numero"
-        ),
-        @NamedQuery(
-                name = "Persona.buscarJefeFamilia",
-                query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = 'SI'"
-        ),
+        @NamedQuery(name = "Persona.buscarConIngresosPorRegistro",
+                query = "SELECT p FROM Persona p LEFT JOIN FETCH p.ingresos WHERE p.registro.numeroRegistro = :numero"),
 
-        @NamedQuery(
-                name = "Persona.buscarPorRegistro",
-                query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC"
-        )
+        @NamedQuery(name = "Persona.buscarJefeFamilia",
+                query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = 'SI'"),
+
+        @NamedQuery(name = "Persona.buscarPorRegistro",
+                query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC")
 })
 public class Persona {
     @Id
@@ -82,28 +77,6 @@ public class Persona {
     private List<IngresoFamiliar> ingresos = new ArrayList<>();
 
     public Persona() {
-    }
-
-    public Persona(String tipoDocumento, String numeroIdentificacion,
-                   String nombre, String primerApellido, String segundoApellido, String telefono, String sexo, String jefatura, String relacion, int edad,
-                   String pais, String migracion, String educacion,
-                   String salud, String seguro, Registro registro) {
-        this.tipoDocumento = tipoDocumento;
-        this.numeroIdentificacion = numeroIdentificacion;
-        this.nombre = nombre;
-        this.PrimerApellido = primerApellido;
-        this.SegundoApellido = segundoApellido;
-        this.telefono = telefono;
-        this.sexo = sexo;
-        this.jefatura = jefatura;
-        this.relacion = relacion;
-        this.edad = edad;
-        this.pais = pais;
-        this.migracion = migracion;
-        this.educacion = educacion;
-        this.salud = salud;
-        this.seguro = seguro;
-        this.registro = registro;
     }
 
     public int getIdPersona() {
