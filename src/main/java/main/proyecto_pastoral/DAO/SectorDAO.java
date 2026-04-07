@@ -44,8 +44,7 @@ public class SectorDAO implements InterfaceDAO<Sector> {
     @Override
     public List<Sector> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Sector s LEFT JOIN FETCH s.parroquia", Sector.class)
+            return session.createNamedQuery("Sector.listarTodos", Sector.class)
                     .list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar sectores", e);
@@ -60,8 +59,7 @@ public class SectorDAO implements InterfaceDAO<Sector> {
 
     public List<Sector> buscarPorParroquia(int idParroquia) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Sector s WHERE s.parroquia.idParroquia = :id ORDER BY s.nombreSector", Sector.class)
+            return session.createNamedQuery("Sector.buscarPorParroquia", Sector.class)
                     .setParameter("id", idParroquia)
                     .list();
         }

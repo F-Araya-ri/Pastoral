@@ -44,7 +44,7 @@ public class ParroquiaDAO implements InterfaceDAO<Parroquia> {
     @Override
     public List<Parroquia> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Parroquia", Parroquia.class).list();
+            return session.createNamedQuery("Parroquia.listarTodos", Parroquia.class).list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar parroquias", e);
         }
@@ -58,8 +58,7 @@ public class ParroquiaDAO implements InterfaceDAO<Parroquia> {
 
     public Optional<Parroquia> buscarPorNombre(String nombre) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Parroquia p WHERE LOWER(p.nombreParroquia) = LOWER(:nombre)", Parroquia.class)
+            return session.createNamedQuery("Parroquia.buscarPorNombre", Parroquia.class)
                     .setParameter("nombre", nombre)
                     .uniqueResultOptional();
         }
@@ -67,8 +66,7 @@ public class ParroquiaDAO implements InterfaceDAO<Parroquia> {
 
     public Optional<Parroquia> buscarConSectores(int id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Parroquia p LEFT JOIN FETCH p.sectores WHERE p.idParroquia = :id", Parroquia.class)
+            return session.createNamedQuery("Parroquia.buscarConSectores", Parroquia.class)
                     .setParameter("id", id)
                     .uniqueResultOptional();
         }
