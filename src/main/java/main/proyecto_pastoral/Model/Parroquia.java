@@ -8,6 +8,20 @@ import java.util.List;
 
 @Entity
 @Table(name = "Parroquia")
+@NamedQueries({
+    @NamedQuery(
+        name = "Parroquia.listarTodos",
+        query = "FROM Parroquia"
+    ),
+    @NamedQuery(
+        name = "Parroquia.buscarPorNombre",
+        query = "FROM Parroquia p WHERE LOWER(p.nombreParroquia) = LOWER(:nombre)"
+    ),
+    @NamedQuery(
+        name = "Parroquia.buscarConSectores",
+        query = "FROM Parroquia p LEFT JOIN FETCH p.sectores WHERE p.idParroquia = :id"
+    )
+})
 public class Parroquia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

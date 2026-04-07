@@ -7,6 +7,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "Sectores")
+@NamedQueries({
+    @NamedQuery(
+        name = "Sector.listarTodos",
+        query = "FROM Sector s LEFT JOIN FETCH s.parroquia"
+    ),
+    @NamedQuery(
+        name = "Sector.buscarPorParroquia",
+        query = "FROM Sector s WHERE s.parroquia.idParroquia = :id ORDER BY s.nombreSector"
+    )
+})
 public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

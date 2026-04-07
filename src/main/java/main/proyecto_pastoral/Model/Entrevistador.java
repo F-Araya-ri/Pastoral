@@ -7,6 +7,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "Entrevistador")
+@NamedQueries({
+    @NamedQuery(
+        name = "Entrevistador.listarTodos",
+        query = "FROM Entrevistador"
+    ),
+    @NamedQuery(
+        name = "Entrevistador.buscarPorNombre",
+        query = "FROM Entrevistador e WHERE LOWER(e.nombre) LIKE LOWER(:nombre)"
+    )
+})
 public class Entrevistador {
 
     @Id

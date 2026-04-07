@@ -44,7 +44,7 @@ public class EntrevistadorDAO implements InterfaceDAO<Entrevistador> {
     @Override
     public List<Entrevistador> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Entrevistador", Entrevistador.class).list();
+            return session.createNamedQuery("Entrevistador.listarTodos", Entrevistador.class).list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar entrevistadores", e);
         }
@@ -58,8 +58,7 @@ public class EntrevistadorDAO implements InterfaceDAO<Entrevistador> {
 
     public Optional<Entrevistador> buscarPorNombre(String nombre) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Entrevistador e WHERE LOWER(e.nombre) LIKE LOWER(:nombre)", Entrevistador.class)
+            return session.createNamedQuery("Entrevistador.buscarPorNombre", Entrevistador.class)
                     .setParameter("nombre", "%" + nombre + "%")
                     .uniqueResultOptional();
         }
