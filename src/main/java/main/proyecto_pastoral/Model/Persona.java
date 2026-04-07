@@ -7,7 +7,10 @@ import java.util.List;
 @Entity
 @Table(name = "Persona")
 @NamedQueries(value = {
-        @NamedQuery(name = "Persona.buscarConIngresosPorRegistro",query = "SELECT p FROM Persona p LEFT JOIN FETCH p.ingresos WHERE p.registro.numeroRegistro = :numero")})
+        @NamedQuery(name = "Persona.buscarConIngresosPorRegistro",query = "SELECT p FROM Persona p LEFT JOIN FETCH p.ingresos WHERE p.registro.numeroRegistro = :numero"),
+        @NamedQuery(name = "Persona.buscarJefeFamilia", query = "SELECT p FROM Persona p WHERE p.registro = :numero AND p.jefatura = 'SI'"),
+        @NamedQuery(name = "Persona.buscarPorRegistro", query = "SELECT p FROM Persona p WHERE P.registro = :numero ORDER BY p.jefatura DESC")
+})
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

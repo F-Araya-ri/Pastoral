@@ -56,19 +56,10 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
         }
     }
 
-    public Optional<Persona> buscarNumeroIdentificacion(String numeroIdentificacion) {
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Persona p WHERE p.numeroIdentificacion = :doc", Persona.class)
-                    .setParameter("doc", numeroIdentificacion)
-                    .uniqueResultOptional();
-        }
-    }
-
     public List<Persona> buscarPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC ", Persona.class)
+            return session.createNamedQuery(
+                            "Persona.buscarPorRegistro", Persona.class)
                     .setParameter("numero", numeroRegistro)
                     .list();
         }
@@ -77,7 +68,7 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
     public Optional<Persona> buscarJefeFamilia(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
             return session.createNamedQuery(
-                            "FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = 'SI'", Persona.class)
+                            "Persona.buscarJefeFamilia", Persona.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResultOptional();
         }
