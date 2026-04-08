@@ -44,7 +44,7 @@ public class PersonaDAO implements InterfaceDAO<Persona> {
     @Override
     public List<Persona> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Persona", Persona.class).list();
+            return session.createNamedQuery("Persona.listarTodos", Persona.class).list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar personas", e);
         }

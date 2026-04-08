@@ -8,6 +8,30 @@ import java.util.List;
 
 @Entity
 @Table(name = "Registro")
+
+@NamedQueries({
+        @NamedQuery(name = "Registro.listarTodos",
+                query = "SELECT r FROM Registro r"),
+
+        @NamedQuery(name = "Registro.buscarCompleto",
+                query = "SELECT r FROM Registro r " +
+                        "LEFT JOIN FETCH r.vivienda " +
+                        "LEFT JOIN FETCH r.personas " +
+                        "LEFT JOIN FETCH r.asistencias " +
+                        "WHERE r.numeroRegistro = :id"),
+
+        @NamedQuery(name = "Registro.buscarPorSector",
+                query = "SELECT r FROM Registro r WHERE r.sector.idSector = :id ORDER BY r.fechaInicio DESC"),
+
+        @NamedQuery(name = "Registro.buscarPorRangoFechas",
+                query = "SELECT r FROM Registro r WHERE r.fechaInicio BETWEEN :desde AND :hasta ORDER BY r.fechaInicio DESC"),
+
+        @NamedQuery(name = "Registro.buscarAbiertos",
+                query = "SELECT r FROM Registro r WHERE r.fechaConclusion IS NULL ORDER BY r.fechaInicio"),
+
+        @NamedQuery(name = "Registro.buscarPorEntrevistador",
+                query = "SELECT r FROM Registro r WHERE r.entrevistador.idEntrevistador = :id ORDER BY r.fechaInicio DESC")
+})
 public class Registro {
 
     @Id

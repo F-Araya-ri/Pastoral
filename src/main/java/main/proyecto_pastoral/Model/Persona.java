@@ -16,8 +16,10 @@ import java.util.List;
                 query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero AND p.jefatura = 'SI'"),
 
         @NamedQuery(name = "Persona.buscarPorRegistro",
-                query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC")
-})
+                query = "SELECT p FROM Persona p WHERE p.registro.numeroRegistro = :numero ORDER BY p.jefatura DESC"),
+
+        @NamedQuery(name = "Persona.listarTodos", query = "SELECT p FROM Persona p")})
+
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
