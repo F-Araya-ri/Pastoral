@@ -60,11 +60,13 @@ public class RegistroDAO implements InterfaceDAO<Registro> {
     @Override
     public List<Registro> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Registro", Registro.class).list();
+            return session.createNamedQuery("Registro.listarTodos", Registro.class)
+                    .getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar registros", e);
         }
     }
+
 
     public Optional<Registro> buscarPorId(int id) {
         try (Session session = sessionFactory.openSession()) {
@@ -72,52 +74,48 @@ public class RegistroDAO implements InterfaceDAO<Registro> {
         }
     }
 
+
     public Optional<Registro> buscarCompleto(int id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Registro r " +
-                                    "LEFT JOIN FETCH r.vivienda " +
-                                    "LEFT JOIN FETCH r.personas " +
-                                    "LEFT JOIN FETCH r.asistencias " +
-                                    "WHERE r.numeroRegistro = :id", Registro.class)
+            return session.createNamedQuery("Registro.buscarCompleto", Registro.class)
                     .setParameter("id", id)
                     .uniqueResultOptional();
         }
     }
 
+    // ✅ Named Query
     public List<Registro> buscarPorSector(int idSector) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Registro r WHERE r.sector.idSector = :id ORDER BY r.fechaInicio DESC", Registro.class)
+            return session.createNamedQuery("Registro.buscarPorSector", Registro.class)
                     .setParameter("id", idSector)
-                    .list();
+                    .getResultList();
         }
     }
+
 
     public List<Registro> buscarPorRangoFechas(LocalDate desde, LocalDate hasta) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Registro r WHERE r.fechaInicio BETWEEN :desde AND :hasta ORDER BY r.fechaInicio DESC", Registro.class)
+            return session.createNamedQuery("Registro.buscarPorRangoFechas", Registro.class)
                     .setParameter("desde", desde)
                     .setParameter("hasta", hasta)
-                    .list();
+                    .getResultList();
         }
     }
+
 
     public List<Registro> buscarAbiertos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Registro r WHERE r.fechaConclusion IS NULL ORDER BY r.fechaInicio", Registro.class)
-                    .list();
+            return session.createNamedQuery("Registro.buscarAbiertos", Registro.class)
+                    .getResultList();
         }
     }
 
+
     public List<Registro> buscarPorEntrevistador(int idEntrevistador) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Registro r WHERE r.entrevistador.idEntrevistador = :id ORDER BY r.fechaInicio DESC", Registro.class)
+            return session.createNamedQuery("Registro.buscarPorEntrevistador", Registro.class)
                     .setParameter("id", idEntrevistador)
-                    .list();
+                    .getResultList();
         }
     }
 }
