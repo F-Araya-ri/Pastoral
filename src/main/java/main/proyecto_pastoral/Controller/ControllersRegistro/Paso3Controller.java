@@ -13,6 +13,7 @@ import main.proyecto_pastoral.Model.IngresoFamiliar;
 import main.proyecto_pastoral.Model.Persona;
 import main.proyecto_pastoral.Model.Registro;
 import main.proyecto_pastoral.Util.HibernateUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -33,7 +34,9 @@ public class Paso3Controller implements Initializable {
     private PersonaDAO personaDAO;
     private IngresoFamiliarDAO ingresoDAO;
     private Registro registro;
-    private ObservableList<Persona> listaPersonas = FXCollections.observableArrayList();
+    private final ObservableList<Persona> listaPersonas = FXCollections.observableArrayList();
+    private javafx.beans.value.ChangeListener<String> cedulaListener = null;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,6 +59,20 @@ public class Paso3Controller implements Initializable {
         colJefatura.setCellValueFactory(new PropertyValueFactory<>("jefatura"));
         colRelacion.setCellValueFactory(new PropertyValueFactory<>("relacion"));
         tablaPersonas.setItems(listaPersonas);
+
+        cmbTipoDoc.valueProperty().addListener((_, _, nuevo) -> aplicarFormatoDocumento(nuevo));
+        txtTelfono.textProperty().addListener((_, _, newText) -> {
+            String soloNumeros = newText.replaceAll("\\D", "");
+            if (soloNumeros.length() > 8) soloNumeros = soloNumeros.substring(0, 8);
+
+            if (soloNumeros.length() > 4) {
+                txtTelfono.setText(soloNumeros.substring(0, 4) + "-" + soloNumeros.substring(4));
+            } else {
+                txtTelfono.setText(soloNumeros);
+            }
+        });
+
+
     }
 
     public void setRegistro(Registro registro) { this.registro = registro; }
@@ -78,7 +95,7 @@ public class Paso3Controller implements Initializable {
         }
         persona.setRelacion(cmbRelacion.getValue());
         persona.setEdad(txtEdad.getText().isEmpty() ? 0 : Integer.parseInt(txtEdad.getText().trim()));
-        persona.setTelefono(txtTelfono.getText().trim());
+        persona.setTelefono(txtTelfono.getText().replaceAll("\\D", ""));
         persona.setPais(txtPais.getText().trim());
         persona.setMigracion(cmbMigracion.getValue());
         persona.setEducacion(cmbEducacion.getValue());
@@ -86,7 +103,7 @@ public class Paso3Controller implements Initializable {
         persona.setSeguro(cmbSeguro.getValue());
         personaDAO.guardar(persona);
 
-        // Guardar ingreso familiar
+
         IngresoFamiliar ingreso = new IngresoFamiliar();
         ingreso.setPersona(persona);
         ingreso.setOcupacion(txtOcupacion.getText().trim());
@@ -123,4 +140,86 @@ public class Paso3Controller implements Initializable {
     }
 
     public int getCantidadPersonas() { return listaPersonas.size(); }
+
+
+    private void aplicarFormatoDocumento(String tipo) {
+        txtDocumento.setTextFormatter(null);
+        txtDocumento.setDisable(false);
+        txtDocumento.setPromptText("");
+        txtDocumento.clear();
+
+        if (cedulaListener != null) {
+            txtDocumento.textProperty().removeListener(cedulaListener);
+            cedulaListener = null;
+        }
+
+        if (tipo == null) return;
+
+        switch (tipo) {
+            case "Cédula" -> {
+                txtDocumento.setPromptText("0-0000-0000");
+                final boolean[] formateando = {false};
+
+                cedulaListener = (_, _, newText) -> {
+                    if (formateando[0]) return;
+
+                    String soloNumeros = newText.replaceAll("\\D", "");
+                    if (soloNumeros.length() > 9) soloNumeros = soloNumeros.substring(0, 9);
+
+                    String resultado = formatearCedula(soloNumeros);
+
+                    if (!txtDocumento.getText().equals(resultado)) {
+                        formateando[0] = true;
+                        javafx.application.Platform.runLater(() -> {
+                            txtDocumento.setText(resultado);
+                            txtDocumento.positionCaret(resultado.length());
+                            formateando[0] = false;
+                        });
+                    }
+                };
+
+                txtDocumento.textProperty().addListener(cedulaListener);
+            }
+
+            case "DIMEX" -> {
+                txtDocumento.setPromptText("000000000000 (máx. 12 dígitos)");
+                txtDocumento.setTextFormatter(new TextFormatter<>(change -> {
+                    if (change.getControlNewText().matches("\\d{0,12}")) return change;
+                    return null;
+                }));
+            }
+
+            case "Pasaporte" -> {
+                txtDocumento.setPromptText("AB123456 (máx. 9 caracteres)");
+                txtDocumento.setTextFormatter(new TextFormatter<>(change -> {
+                    String nuevo = change.getControlNewText().toUpperCase();
+                    if (nuevo.matches("[A-Z0-9]{0,9}")) {
+                        change.setText(change.getText().toUpperCase());
+                        return change;
+                    }
+                    return null;
+                }));
+            }
+
+            case "Sin documento" -> {
+                txtDocumento.setDisable(true);
+                txtDocumento.setText("N/A");
+            }
+        }
+    }
+
+    private static String formatearCedula(String soloNumeros) {
+        StringBuilder sb = new StringBuilder();
+        if (!soloNumeros.isEmpty()) {
+            sb.append(soloNumeros.charAt(0));
+        }
+        if (soloNumeros.length() >= 2) {
+            sb.append("-").append(soloNumeros, 1, Math.min(5, soloNumeros.length()));
+        }
+        if (soloNumeros.length() >= 6) {
+            sb.append("-").append(soloNumeros.substring(5));
+        }
+        return sb.toString();
+    }
+
 }
