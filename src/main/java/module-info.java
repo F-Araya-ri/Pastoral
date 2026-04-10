@@ -7,6 +7,7 @@ module main.proyecto_pastoral {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires java.naming;
+    requires annotations;
 
     opens main.proyecto_pastoral.Model to org.hibernate.orm.core, javafx.base;
     opens main.proyecto_pastoral.Controller to javafx.fxml;
