@@ -4,11 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -20,6 +16,7 @@ import main.proyecto_pastoral.Util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -77,9 +74,21 @@ public class AdendumExpedienteController implements Initializable {
         registroDAO = new RegistroDAO(sf);
         adendumAyudaDAO = new AdendumAyudaDAO(sf);
         contenedorFormulario.setDisable(true);
-        pausaGuardado.setOnFinished(event -> guardarAutomaticamente());
+        pausaGuardado.setOnFinished(_ -> guardarAutomaticamente());
+
+
+        datePikerFechas(txtElectricidadFecha);
+        datePikerFechas(txtAguaFecha);
+        datePikerFechas(txtTelefonoFecha);
+        datePikerFechas(txtInternetFecha);
+        datePikerFechas(txtCableFecha);
+        datePikerFechas(txtFechaRec1);
+        datePikerFechas(txtFechaRec2);
+        datePikerFechas(txtFechaRec3);
+
         registrarAutoGuardado();
     }
+
 
     private void registrarAutoGuardado() {
         registrarCambioTexto(
@@ -90,18 +99,18 @@ public class AdendumExpedienteController implements Initializable {
                 txtFechaRec1, txtFechaRec2, txtFechaRec3
         );
 
-        txtObservaciones.textProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
-        rbRec1Si.selectedProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
-        rbRec1No.selectedProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
-        rbRec2Si.selectedProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
-        rbRec2No.selectedProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
-        rbRec3Si.selectedProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
-        rbRec3No.selectedProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
+        txtObservaciones.textProperty().addListener((_, _, _) -> programarGuardado());
+        rbRec1Si.selectedProperty().addListener((_, _, _) -> programarGuardado());
+        rbRec1No.selectedProperty().addListener((_, _, _) -> programarGuardado());
+        rbRec2Si.selectedProperty().addListener((_, _, _) -> programarGuardado());
+        rbRec2No.selectedProperty().addListener((_, _, _) -> programarGuardado());
+        rbRec3Si.selectedProperty().addListener((_, _, _) -> programarGuardado());
+        rbRec3No.selectedProperty().addListener((_, _, _) -> programarGuardado());
     }
 
     private void registrarCambioTexto(TextInputControl... controles) {
         for (TextInputControl control : controles) {
-            control.textProperty().addListener((obs, oldVal, newVal) -> programarGuardado());
+            control.textProperty().addListener((_, _, _) -> programarGuardado());
         }
     }
 
@@ -326,5 +335,40 @@ public class AdendumExpedienteController implements Initializable {
         pausaGuardado.stop();
         Stage stage = (Stage) lblEstado.getScene().getWindow();
         stage.close();
+    }
+
+    private void datePikerFechas(TextField textField){
+        textField.focusedProperty().addListener((_, _, tieneFoco) -> {
+            if (tieneFoco && !contenedorFormulario.isDisabled()) {
+                abrirDatePicker(textField);
+            }
+        });
+        textField.setEditable(false);
+        textField.setStyle("-fx-cursor: hand;");
+    }
+    private void abrirDatePicker(TextField campoDestino) {
+        DatePicker datePicker = new DatePicker();
+        if (!campoDestino.getText().isEmpty()) {
+            try {
+                datePicker.setValue(LocalDate.parse(campoDestino.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            } catch (Exception ignored) {}
+        }
+
+        javafx.stage.Popup popup = new javafx.stage.Popup();
+        popup.getContent().add(datePicker);
+        popup.setAutoHide(true);
+
+
+        datePicker.setOnAction(_ -> {
+            LocalDate fecha = datePicker.getValue();
+            if (fecha != null) {
+                campoDestino.setText(fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                popup.hide();
+            }
+        });
+
+        javafx.geometry.Bounds bounds = campoDestino.localToScreen(campoDestino.getBoundsInLocal());
+        popup.show(campoDestino.getScene().getWindow(), bounds.getMinX(), bounds.getMaxY());
+        datePicker.show();
     }
 }

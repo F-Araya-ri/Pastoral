@@ -13,7 +13,7 @@ import main.proyecto_pastoral.Model.IngresoFamiliar;
 import main.proyecto_pastoral.Model.Persona;
 import main.proyecto_pastoral.Model.Registro;
 import main.proyecto_pastoral.Util.HibernateUtil;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.math.BigDecimal;
 import java.net.URL;

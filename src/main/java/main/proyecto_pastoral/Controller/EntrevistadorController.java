@@ -18,16 +18,25 @@ import java.util.ResourceBundle;
 
 public class EntrevistadorController implements Initializable {
 
-    @FXML private Button btnRegistroForms;
-    @FXML private Label lblTotal;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtTelefono;
-    @FXML private TextField txtNombre;
-    @FXML private Button  btnGuardar;
-    @FXML private Button  btnCancelar;
+    @FXML
+    private Button btnRegistroForms;
+    @FXML
+    private Label lblTotal;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtTelefono;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private Button btnGuardar;
+    @FXML
+    private Button btnCancelar;
 
-    @FXML private Label   lblMensaje;
-    @FXML private ListView<Entrevistador> listaEntrevistadores;
+    @FXML
+    private Label lblMensaje;
+    @FXML
+    private ListView<Entrevistador> listaEntrevistadores;
 
     private EntrevistadorDAO entrevistadorDAO;
 
@@ -49,6 +58,17 @@ public class EntrevistadorController implements Initializable {
         });
 
         actualizarLista();
+
+        txtTelefono.textProperty().addListener((_, _, newText) -> {
+            String soloNumeros = newText.replaceAll("\\D", "");
+            if (soloNumeros.length() > 8) soloNumeros = soloNumeros.substring(0, 8);
+
+            if (soloNumeros.length() > 4) {
+                txtTelefono.setText(soloNumeros.substring(0, 4) + "-" + soloNumeros.substring(4));
+            } else {
+                txtTelefono.setText(soloNumeros);
+            }
+        });
     }
 
 
@@ -56,10 +76,10 @@ public class EntrevistadorController implements Initializable {
     private void guardarEntrevistador() {
 
 
-       String Nombre = txtNombre.getText().trim();
-        String Telefono = txtTelefono.getText().trim();
+        String Nombre = txtNombre.getText().trim();
+        String Telefono = txtTelefono.getText().replaceAll("\\D", "");
         String Email = txtEmail.getText().trim();
-        String Estado = "Activo" ;
+        String Estado = "Activo";
 
         if (Nombre.isEmpty()) {
             mostrarMensaje("El nombre no puede estar vacío.", true);
@@ -149,9 +169,10 @@ public class EntrevistadorController implements Initializable {
                 : "-fx-text-fill: #27ae60; -fx-font-weight: bold;"
         );
     }
+
     @FXML
     private void abrirInicioRegistro() throws IOException {
-        javafx.stage.Stage stage = (javafx.stage.Stage) btnRegistroForms .getScene().getWindow();
+        javafx.stage.Stage stage = (javafx.stage.Stage) btnRegistroForms.getScene().getWindow();
         stage.close();
     }
 }

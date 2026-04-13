@@ -490,11 +490,12 @@ public class InicioRegistroController implements Initializable {
     @FXML
     private void CargarVistas(String nombreVista, String infVista) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/"+nombreVista));
-        Scene registroScene = new Scene(loader.load(), 1000, 700);
+        Scene registroScene = new Scene(loader.load());
 
         Stage stage = new Stage();
         stage.setTitle(infVista);
         stage.setScene(registroScene);
+        stage.setMaximized(true);
         stage.show();
 
     }
@@ -502,7 +503,7 @@ public class InicioRegistroController implements Initializable {
     @FXML
     public void mostrarRegistroForms() throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Wizard.fxml"));
-        Scene registroScene = new Scene(loader.load(), 1000, 700);
+        Scene registroScene = new Scene(loader.load());
 
         WizardController controller = loader.getController();
         controller.setOnRegistroCreado(registro -> {
@@ -513,6 +514,7 @@ public class InicioRegistroController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Formulario Registro");
         stage.setScene(registroScene);
+        stage.setMaximized(true);
         stage.show();
     }
     @FXML
