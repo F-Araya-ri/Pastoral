@@ -54,9 +54,6 @@ public class FichaCompletaController implements Initializable {
     // ── DAOs ─────────────────────────────────────────────────────────
     private PersonaDAO personaDAO;
     private ViviendaDAO viviendaDAO;
-    private RegistroDAO registroDAO;
-    private ParroquiaDAO parroquiaDAO;
-    private EntrevistadorDAO entrevistadorDAO;
 
     private Registro registroActual;
 
@@ -76,9 +73,9 @@ public class FichaCompletaController implements Initializable {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         personaDAO       = new PersonaDAO(sessionFactory);
         viviendaDAO      = new ViviendaDAO(sessionFactory);
-        registroDAO      = new RegistroDAO(sessionFactory);
-        parroquiaDAO     = new ParroquiaDAO(sessionFactory);
-        entrevistadorDAO = new EntrevistadorDAO(sessionFactory);
+        RegistroDAO registroDAO = new RegistroDAO(sessionFactory);
+        ParroquiaDAO parroquiaDAO = new ParroquiaDAO(sessionFactory);
+        EntrevistadorDAO entrevistadorDAO = new EntrevistadorDAO(sessionFactory);
     }
 
 

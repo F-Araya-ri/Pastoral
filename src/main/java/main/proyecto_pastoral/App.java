@@ -11,9 +11,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/main/Proyecto_Pastoral/Vistas/Inicioregistroforms.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Pastoral");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 }

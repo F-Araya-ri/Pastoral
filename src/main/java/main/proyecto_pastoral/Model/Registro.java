@@ -65,7 +65,7 @@ public class Registro {
     @OneToMany(mappedBy = "registro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Asistencia> asistencias = new ArrayList<>();
 
-    @OneToOne(mappedBy = "registro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "registro", cascade = CascadeType.ALL)
     private AdendumAyuda adendumAyuda;
 
     public Registro() {
