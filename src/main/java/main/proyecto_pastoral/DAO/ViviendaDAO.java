@@ -44,7 +44,7 @@ public class ViviendaDAO implements InterfaceDAO<Vivienda> {
     @Override
     public List<Vivienda> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Vivienda", Vivienda.class).list();
+            return session.createNamedQuery("Vivienda.listarTodos", Vivienda.class).list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar viviendas", e);
         }
@@ -58,8 +58,8 @@ public class ViviendaDAO implements InterfaceDAO<Vivienda> {
 
     public Optional<Vivienda> buscarPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Vivienda v WHERE v.registro.numeroRegistro = :numero", Vivienda.class)
+            return session.createNamedQuery(
+                            "Vivienda.buscarPorRegistro", Vivienda.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResultOptional();
         }
@@ -67,8 +67,8 @@ public class ViviendaDAO implements InterfaceDAO<Vivienda> {
 
     public List<Vivienda> buscarPorTipo(String tipo) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM Vivienda v WHERE LOWER(v.tipo) = LOWER(:tipo)", Vivienda.class)
+            return session.createNamedQuery(
+                            "Vivienda.buscarPorTipo", Vivienda.class)
                     .setParameter("tipo", tipo)
                     .list();
         }

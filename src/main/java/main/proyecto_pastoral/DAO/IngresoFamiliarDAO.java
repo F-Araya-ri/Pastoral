@@ -45,7 +45,7 @@ public class IngresoFamiliarDAO implements InterfaceDAO<IngresoFamiliar> {
     @Override
     public List<IngresoFamiliar> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM IngresoFamiliar", IngresoFamiliar.class).list();
+            return session.createNamedQuery("IngresoFamiliar.listarTodos", IngresoFamiliar.class).list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar ingresos familiares", e);
         }
@@ -59,8 +59,8 @@ public class IngresoFamiliarDAO implements InterfaceDAO<IngresoFamiliar> {
 
     public List<IngresoFamiliar> buscarPorPersona(int idPersona) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                    "FROM IngresoFamiliar i WHERE i.persona.idPersona = :id", IngresoFamiliar.class)
+            return session.createNamedQuery(
+                    "IngresoFamiliar.buscarPorPersona", IngresoFamiliar.class)
                     .setParameter("id", idPersona)
                     .list();
         }
@@ -68,9 +68,8 @@ public class IngresoFamiliarDAO implements InterfaceDAO<IngresoFamiliar> {
 
     public BigDecimal sumarIngresosPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            BigDecimal total = session.createQuery(
-                    "SELECT COALESCE(SUM(i.ingresoMensual), 0) FROM IngresoFamiliar i " +
-                    "WHERE i.persona.registro.numeroRegistro = :numero", BigDecimal.class)
+            BigDecimal total = session.createNamedQuery(
+                    "IngresoFamiliar.sumarIngresosPorRegistro", BigDecimal.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResult();
             return total != null ? total : BigDecimal.ZERO;

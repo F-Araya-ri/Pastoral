@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Vivienda")
+@NamedQueries(value = {
+        @NamedQuery(name = "Vivienda.listarTodos",
+                query = "FROM Vivienda"),
+        @NamedQuery(name = "Vivienda.buscarPorRegistro",
+                query = "FROM Vivienda v WHERE v.registro.numeroRegistro = :numero"),
+        @NamedQuery(name = "Vivienda.buscarPorTipo",
+                query = "FROM Vivienda v WHERE LOWER(v.tipo) = LOWER(:tipo)")
+})
 public class Vivienda {
 
     @Id

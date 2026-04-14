@@ -5,6 +5,14 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "IngresoFamiliar")
+@NamedQueries(value = {
+        @NamedQuery(name = "IngresoFamiliar.listarTodos",
+                query = "FROM IngresoFamiliar"),
+        @NamedQuery(name = "IngresoFamiliar.buscarPorPersona",
+                query = "FROM IngresoFamiliar i WHERE i.persona.idPersona = :id"),
+        @NamedQuery(name = "IngresoFamiliar.sumarIngresosPorRegistro",
+                query = "SELECT COALESCE(SUM(i.ingresoMensual), 0) FROM IngresoFamiliar i WHERE i.persona.registro.numeroRegistro = :numero")
+})
 public class IngresoFamiliar {
 
     @Id
