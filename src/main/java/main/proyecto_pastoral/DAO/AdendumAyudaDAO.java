@@ -45,14 +45,14 @@ public class AdendumAyudaDAO implements InterfaceDAO<AdendumAyuda> {
     @Override
     public List<AdendumAyuda> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM AdendumAyuda", AdendumAyuda.class).list();
+            return session.createNamedQuery("AdendumAyuda.listarTodos", AdendumAyuda.class).list();
         }
     }
 
     public Optional<AdendumAyuda> buscarPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                            "FROM AdendumAyuda a WHERE a.registro.numeroRegistro = :numero",
+            return session.createNamedQuery(
+                            "AdendumAyuda.buscarPorRegistro",
                             AdendumAyuda.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResultOptional();

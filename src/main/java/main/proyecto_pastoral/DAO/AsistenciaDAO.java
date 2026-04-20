@@ -45,7 +45,7 @@ public class AsistenciaDAO implements InterfaceDAO<Asistencia> {
     @Override
     public List<Asistencia> listarTodos() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Asistencia", Asistencia.class).list();
+            return session.createNamedQuery("Asistencia.listarTodos", Asistencia.class).list();
         } catch (Exception e) {
             throw new RuntimeException("Error al listar asistencias", e);
         }
@@ -59,8 +59,8 @@ public class AsistenciaDAO implements InterfaceDAO<Asistencia> {
 
     public List<Asistencia> buscarPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                    "FROM Asistencia a WHERE a.registro.numeroRegistro = :numero", Asistencia.class)
+            return session.createNamedQuery(
+                    "Asistencia.buscarPorRegistro", Asistencia.class)
                     .setParameter("numero", numeroRegistro)
                     .list();
         }
@@ -68,8 +68,8 @@ public class AsistenciaDAO implements InterfaceDAO<Asistencia> {
 
     public List<Asistencia> buscarPorTipo(String tipo) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery(
-                    "FROM Asistencia a WHERE LOWER(a.tipo) = LOWER(:tipo)", Asistencia.class)
+            return session.createNamedQuery(
+                    "Asistencia.buscarPorTipo", Asistencia.class)
                     .setParameter("tipo", tipo)
                     .list();
         }
@@ -77,9 +77,8 @@ public class AsistenciaDAO implements InterfaceDAO<Asistencia> {
 
     public BigDecimal sumarValorPorRegistro(int numeroRegistro) {
         try (Session session = sessionFactory.openSession()) {
-            BigDecimal total = session.createQuery(
-                    "SELECT COALESCE(SUM(a.valor), 0) FROM Asistencia a " +
-                    "WHERE a.registro.numeroRegistro = :numero", BigDecimal.class)
+            BigDecimal total = session.createNamedQuery(
+                    "Asistencia.sumarValorPorRegistro", BigDecimal.class)
                     .setParameter("numero", numeroRegistro)
                     .uniqueResult();
             return total != null ? total : BigDecimal.ZERO;
