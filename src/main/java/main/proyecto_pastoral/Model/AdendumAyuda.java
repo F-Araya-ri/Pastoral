@@ -6,6 +6,16 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "AdendumAyuda")
+@NamedQueries({
+    @NamedQuery(
+        name = "AdendumAyuda.listarTodos",
+        query = "FROM AdendumAyuda"
+    ),
+    @NamedQuery(
+        name = "AdendumAyuda.buscarPorRegistro",
+        query = "FROM AdendumAyuda a WHERE a.registro.numeroRegistro = :numero"
+    )
+})
 public class AdendumAyuda {
 
     @Id

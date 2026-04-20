@@ -5,6 +5,24 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "Asistencia")
+@NamedQueries({
+    @NamedQuery(
+        name = "Asistencia.listarTodos",
+        query = "FROM Asistencia"
+    ),
+    @NamedQuery(
+        name = "Asistencia.buscarPorRegistro",
+        query = "FROM Asistencia a WHERE a.registro.numeroRegistro = :numero"
+    ),
+    @NamedQuery(
+        name = "Asistencia.buscarPorTipo",
+        query = "FROM Asistencia a WHERE LOWER(a.tipo) = LOWER(:tipo)"
+    ),
+    @NamedQuery(
+        name = "Asistencia.sumarValorPorRegistro",
+        query = "SELECT COALESCE(SUM(a.valor), 0) FROM Asistencia a WHERE a.registro.numeroRegistro = :numero"
+    )
+})
 public class Asistencia {
 
     @Id
