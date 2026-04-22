@@ -10,7 +10,6 @@ import main.proyecto_pastoral.Model.Entrevistador;
 import main.proyecto_pastoral.Util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,10 +27,6 @@ public class EntrevistadorController implements Initializable {
     private TextField txtTelefono;
     @FXML
     private TextField txtNombre;
-    @FXML
-    private Button btnGuardar;
-    @FXML
-    private Button btnCancelar;
 
     @FXML
     private Label lblMensaje;
@@ -47,7 +42,7 @@ public class EntrevistadorController implements Initializable {
         entrevistadorDAO = new EntrevistadorDAO(sf);
 
 
-        listaEntrevistadores.setCellFactory(lv -> new ListCell<>() {
+        listaEntrevistadores.setCellFactory(_ -> new ListCell<>() {
             @Override
             protected void updateItem(Entrevistador e, boolean empty) {
                 super.updateItem(e, empty);
@@ -159,7 +154,7 @@ public class EntrevistadorController implements Initializable {
 
     // =====================================================================
     // MOSTRAR MENSAJE
-    //   esError = true  → rojo
+    //   esError = true → rojo
     //   esError = false → verde
     // =====================================================================
     private void mostrarMensaje(String texto, boolean esError) {
@@ -171,7 +166,7 @@ public class EntrevistadorController implements Initializable {
     }
 
     @FXML
-    private void abrirInicioRegistro() throws IOException {
+    private void abrirInicioRegistro() {
         javafx.stage.Stage stage = (javafx.stage.Stage) btnRegistroForms.getScene().getWindow();
         stage.close();
     }
