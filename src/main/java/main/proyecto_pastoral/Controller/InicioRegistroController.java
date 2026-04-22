@@ -380,39 +380,69 @@ public class InicioRegistroController implements Initializable {
     }
 
     // =====================================================================
-    // CARGAR FILTROS DE BÚSQUEDA
+    // CARGAR FILTROS DE BÚSQUEDA (solo configura converters la primera vez)
     // =====================================================================
     private void cargarFiltros() {
+        // Configurar converters una sola vez
+        cbFiltroParroquia.setConverter(new javafx.util.StringConverter<Parroquia>() {
+            @Override
+            public String toString(Parroquia p) {
+                return p != null ? p.getNombreParroquia() : "";
+            }
+            @Override
+            public Parroquia fromString(String s) {
+                return null;
+            }
+        });
+
+        cbFiltroEntrevistador.setConverter(new javafx.util.StringConverter<Entrevistador>() {
+            @Override
+            public String toString(Entrevistador e) {
+                return e != null ? e.getNombre() : "";
+            }
+            @Override
+            public Entrevistador fromString(String s) {
+                return null;
+            }
+        });
+
+        // Cargar datos iniciales
+        recargarFiltros();
+    }
+
+    // =====================================================================
+    // RECARGAR FILTROS — Se llama al abrir la pantalla Y al cerrar
+    // cualquier ventana de Parroquia o Entrevistador para mantener
+    // los ComboBox actualizados sin reiniciar la pantalla.
+    // =====================================================================
+    private void recargarFiltros() {
         try {
-            // Cargar parroquias
+            // Guardar selección actual para no perderla al recargar
+            Parroquia parroquiaActual = cbFiltroParroquia.getValue();
+            Entrevistador entrevistadorActual = cbFiltroEntrevistador.getValue();
+
+            // Recargar parroquias
             List<Parroquia> parroquias = parroquiaDAO.listarTodos();
-            cbFiltroParroquia.getItems().addAll(parroquias);
-            cbFiltroParroquia.setConverter(new javafx.util.StringConverter<Parroquia>() {
-                @Override
-                public String toString(Parroquia p) {
-                    return p != null ? p.getNombreParroquia() : "";
-                }
+            cbFiltroParroquia.getItems().setAll(parroquias);
 
-                @Override
-                public Parroquia fromString(String s) {
-                    return null;
-                }
-            });
-
-            // Cargar entrevistadores
+            // Recargar entrevistadores
             List<Entrevistador> entrevistadores = entrevistadorDAO.listarTodos();
-            cbFiltroEntrevistador.getItems().addAll(entrevistadores);
-            cbFiltroEntrevistador.setConverter(new javafx.util.StringConverter<Entrevistador>() {
-                @Override
-                public String toString(Entrevistador e) {
-                    return e != null ? e.getNombre() : "";
-                }
+            cbFiltroEntrevistador.getItems().setAll(entrevistadores);
 
-                @Override
-                public Entrevistador fromString(String s) {
-                    return null;
-                }
-            });
+            // Restaurar selección previa si todavía existe en la lista
+            if (parroquiaActual != null) {
+                parroquias.stream()
+                        .filter(p -> p.getIdParroquia() == parroquiaActual.getIdParroquia())
+                        .findFirst()
+                        .ifPresent(cbFiltroParroquia::setValue);
+            }
+            if (entrevistadorActual != null) {
+                entrevistadores.stream()
+                        .filter(e -> e.getIdEntrevistador() == entrevistadorActual.getIdEntrevistador())
+                        .findFirst()
+                        .ifPresent(cbFiltroEntrevistador::setValue);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -518,13 +548,31 @@ public class InicioRegistroController implements Initializable {
         stage.show();
     }
     @FXML
-    public void mostrarRegistroAdmin() throws IOException {
-        CargarVistas("Entrevistadorforms.fxml","Nuevo Admistrador");
-    }
-    @FXML
     public void mostrarRegistroParroquia() throws IOException {
-        CargarVistas("ParroquiaSector.fxml","Nueva Parroquia");
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/ParroquiaSector.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Nueva Parroquia");
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        // Al cerrar la ventana, recargamos los ComboBox automáticamente
+        stage.setOnHidden(e -> recargarFiltros());
+        stage.show();
     }
+
+    @FXML
+    public void mostrarRegistroAdmin() throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("Vistas/Entrevistadorforms.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Nuevo Administrador");
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        // Al cerrar la ventana, recargamos los ComboBox automáticamente
+        stage.setOnHidden(e -> recargarFiltros());
+        stage.show();
+    }
+
     @FXML
     public void mostrarAdendumExpediente() throws IOException {
         CargarVistas("AdendumExpediente.fxml","Adendum al Expediente");
